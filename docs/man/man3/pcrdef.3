@@ -1,0 +1,1441 @@
+.TH pcrdef.h 3 "17 Jan 2000" "Icom PCR-1000 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pcrdef.h \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS Defines
+
+.in +1c
+.ti -1c
+.RI "#define \fBPCRQST\fR"
+.br
+.RI "\fISuffix for Radio Query.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRECMD\fR"
+.br
+.RI "\fISuffix for execute command.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRINITM\fR"
+.br
+.RI "\fIInit, manual probe.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRINITA\fR"
+.br
+.RI "\fIInit, Auto probe.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSIG\fR"
+.br
+.RI "\fISignal Update (G3).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSIGOFF\fR"
+.br
+.RI "\fIProgram should poll status from radio (G300).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSIGON\fR"
+.br
+.RI "\fIRadio sends status automagically when a change (G301).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSIGBOFF\fR"
+.br
+.RI "\fIBinary mode off (G302).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSIGBON\fR"
+.br
+.RI "\fIBinary mode on (G303).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRPWR\fR"
+.br
+.RI "\fIPower (H1).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRPWROFF\fR"
+.br
+.RI "\fIPower radio down (H100).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRPWRON\fR"
+.br
+.RI "\fIPower radio up (H101).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRVOL\fR"
+.br
+.RI "\fIVolume prefix (J40).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRVOLON\fR"
+.br
+.RI "\fIVolume at 75 % (J4075).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRVOLOFF\fR"
+.br
+.RI "\fIVolume at MUTE (J4000).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSQL\fR"
+.br
+.RI "\fISquelch Prefix (J41).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSQLO\fR"
+.br
+.RI "\fIFully Open (J4100).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSQLC\fR"
+.br
+.RI "\fIClosed squelch at 45% (J4145).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRIF\fR"
+.br
+.RI "\fIIF Shift Prefix (J43).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRIFC\fR"
+.br
+.RI "\fIIF Centered (J4380).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRAGC\fR"
+.br
+.RI "\fIAutomatic Gain Control Prefix (J45).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRAGCOFF\fR"
+.br
+.RI "\fIAGC Off (J4500).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRAGCON\fR"
+.br
+.RI "\fIAGC On (J4501).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRNB\fR"
+.br
+.RI "\fINoise Blanking Prefix (J46).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRNBOFF\fR"
+.br
+.RI "\fINoise Blanking Off (J4600).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRNBON\fR"
+.br
+.RI "\fINoise Blanking On (J4601).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRFA\fR"
+.br
+.RI "\fIRF Attenuator Prefix.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRFAOFF\fR"
+.br
+.RI "\fIRF Attenuator Off (J4700).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRFAON\fR"
+.br
+.RI "\fIRF Attenuator On (J4701).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRVSC\fR"
+.br
+.RI "\fIVSC Prefix (J50).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRVSCOFF\fR"
+.br
+.RI "\fIVSC Off (J5000).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRVSCON\fR"
+.br
+.RI "\fIVSC On (J5001).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRTSQL\fR"
+.br
+.RI "\fICTCSS - Tone Squelch Prefix (J51).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRTSQLOFF\fR"
+.br
+.RI "\fICTCSS - Tone Squelch Off (J5100).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRUNK01\fR"
+.br
+.ti -1c
+.RI "#define \fBPCRUNK02\fR"
+.br
+.ti -1c
+.RI "#define \fBPCRTFLTR\fR"
+.br
+.RI "\fITracking filter Prefix (LD082).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRTFLTR00\fR"
+.br
+.RI "\fIAutomagic Tracking Filter (LD8200).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRTFLTR01\fR"
+.br
+.RI "\fIManual Tracking Filter (LD8201).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRFRQ\fR"
+.br
+.RI "\fIFreq. Header (K0).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBMAXFRQLEN\fR"
+.br
+.RI "\fIfreq. len. 10 bytes (padded) <GMMMKKKHHH> (10).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBLOWERFRQ\fR"
+.br
+.RI "\fIlower bounds for frequency 50 kHz (50000).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBUPPERFRQ\fR"
+.br
+.RI "\fIupper bound for frequency 1.3 GHz (1300000000).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRMODLSB\fR"
+.br
+.RI "\fILower sideband (00).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRMODUSB\fR"
+.br
+.RI "\fIUpper sideband (01).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRMODAM\fR"
+.br
+.RI "\fIAmplitude Modulated (02).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRMODCW\fR"
+.br
+.RI "\fIContinuous Mode (03).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRMODUNK\fR"
+.br
+.RI "\fIunknown mode -- (04).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRMODNFM\fR"
+.br
+.RI "\fINarrowband FM (05).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRMODWFM\fR"
+.br
+.RI "\fIWideband FM (06).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRFLTR3\fR"
+.br
+.RI "\fI3 kHz Filter (00).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRFLTR6\fR"
+.br
+.RI "\fI6 kHz Filter (01).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRFLTR15\fR"
+.br
+.RI "\fI15 kHz Filter (02).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRFLTR50\fR"
+.br
+.RI "\fI50 kHz Filter (03).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRFLTR230\fR"
+.br
+.RI "\fI230 kHz Filter (04).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRQSQL\fR"
+.br
+.RI "\fIQuery Squelch Setting (I0).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRQRST\fR"
+.br
+.RI "\fIQuery Signal Strength (I1).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRQOFST\fR"
+.br
+.RI "\fIQuery Frequency Offset (I2).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRQDTMF\fR"
+.br
+.RI "\fIQuery presense of DTMF Tone (I3).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRQWAREZ\fR"
+.br
+.RI "\fIQuery Firmware revision (I4).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRQDSP\fR"
+.br
+.RI "\fIQuery Presense of DSP (I5).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRQCTY\fR"
+.br
+.RI "\fIQuery country / region (I6).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRAOK\fR"
+.br
+.RI "\fIReply: Ok (G000).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRABAD\fR"
+.br
+.RI "\fIReply: There was an error (G001).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADSP\fR"
+.br
+.RI "\fIDSP Header (PCRQDSP).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADSPNO\fR"
+.br
+.RI "\fINot present (GD00).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADSPOK\fR"
+.br
+.RI "\fIPresent (GD01).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRASQL\fR"
+.br
+.RI "\fISquelch Header (PCRQSQL).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRASQLCL\fR"
+.br
+.RI "\fISqlch Closed (04).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRASQLOPN\fR"
+.br
+.RI "\fISqlch Open (07).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRARST\fR"
+.br
+.RI "\fISignal Strength (PCRQRST).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRAOFST\fR"
+.br
+.RI "\fIFrequency offset Header (PCRQOFST).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRAOFSTCTR\fR"
+.br
+.RI "\fIFrequency (offset) centered (I280).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF\fR"
+.br
+.RI "\fIDTMF Header (PCRQDTMF).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMFNO\fR"
+.br
+.RI "\fIDTMF Not Heard (I300).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF0\fR"
+.br
+.RI "\fIDTMF 0 (I310).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF1\fR"
+.br
+.RI "\fIDTMF 1 (I311).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF2\fR"
+.br
+.RI "\fIDTMF 2 (I312).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF3\fR"
+.br
+.RI "\fIDTMF 3 (I313).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF4\fR"
+.br
+.RI "\fIDTMF 4 (I314).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF5\fR"
+.br
+.RI "\fIDTMF 5 (I315).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF6\fR"
+.br
+.RI "\fIDTMF 6 (I315).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF7\fR"
+.br
+.RI "\fIDTMF 7 (I316).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF8\fR"
+.br
+.RI "\fIDTMF 8 (I318).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMF9\fR"
+.br
+.RI "\fIDTMF 9 (I319).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMFA\fR"
+.br
+.RI "\fIDTMF A (I31A).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMFB\fR"
+.br
+.RI "\fIDTMF B (I31B).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMFC\fR"
+.br
+.RI "\fIDTMF C (I31C).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMFD\fR"
+.br
+.RI "\fIDTMF D (I31D).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMFS\fR"
+.br
+.RI "\fIDTMF * (I31E).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRADTMFP\fR"
+.br
+.RI "\fIDTMF # (I31F).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRBD\fR"
+.br
+.RI "\fIBaud Rate Header (G1).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRBD300\fR"
+.br
+.RI "\fI300 baud (G100).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRBD1200\fR"
+.br
+.RI "\fI1200 baud (G101).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRBD2400\fR"
+.br
+.RI "\fI2400 baud (G102).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRBD9600\fR"
+.br
+.RI "\fI9600 baud (G103).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRBD19200\fR"
+.br
+.RI "\fI19200 baud (G104).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRBD38400\fR"
+.br
+.RI "\fI38400 baud (G105).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRSBSC\fR"
+.br
+.RI "\fIbandscope prefix SENT (ME00001).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC\fR"
+.br
+.RI "\fIbandscope prefix RECV (NE1).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC0\fR"
+.br
+.RI "\fIpacket 0 (NE100).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC1\fR"
+.br
+.RI "\fIpacket 1 (NE110).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC2\fR"
+.br
+.RI "\fIpacket 2 (NE120).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC3\fR"
+.br
+.RI "\fIpacket 3 (NE130).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC4\fR"
+.br
+.RI "\fIpacket 4 (NE140).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC5\fR"
+.br
+.RI "\fIpacket 5 (NE150).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC6\fR"
+.br
+.RI "\fIpacket 6 (NE160).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC7\fR"
+.br
+.RI "\fIpacket 7 (NE170).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC8\fR"
+.br
+.RI "\fIpacket 8 (NE180).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSC9\fR"
+.br
+.RI "\fIpacket 9 (NE190).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSCA\fR"
+.br
+.RI "\fIpacket 10 (NE1A0).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSCB\fR"
+.br
+.RI "\fIpacket 11 (NE1B0).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSCC\fR"
+.br
+.RI "\fIpacket 12 (NE1C0).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSCD\fR"
+.br
+.RI "\fIpacket 13 (NE1D0).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSCE\fR"
+.br
+.RI "\fIpacket 14 (NE1E0).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "#define \fBPCRRBSCF\fR"
+.br
+.RI "\fIpacket 15 (NE1F0).\fR"
+.PP
+
+.in -1c
+.SS Typedefs
+
+.in +1c
+.ti -1c
+.RI "typedef char \fBpcrcmd_t\fR"
+.br
+.RI "\fIpcr1000 command string.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "typedef unsigned long int \fBpcrfreq_t\fR"
+.br
+.RI "\fIpcr1000 frequency length.\fR"
+.PP
+
+.in -1c
+.SH DEFINE DOCUMENTATION
+.PP 
+.SS #define PCRQST ()
+.PP
+Suffix for Radio Query.
+.PP
+Definition at line 35 of file pcrdef.h.
+.SS #define PCRECMD ()
+.PP
+Suffix for execute command.
+.PP
+Definition at line 37 of file pcrdef.h.
+.SS #define PCRINITM ()
+.PP
+Init, manual probe.
+.PP
+\fBWarning:\fR after issueing an init DO NOT read(). If you do, the read() will block and wont return. the radio doesn't return data after an initialization. You must close the socket, and reopen it. You wont have to reopen the socket with wierd opts, unless you reset the socket to the state as it was before . 
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCRINITA\fR() 
+.PP
+Definition at line 49 of file pcrdef.h.
+.SS #define PCRINITA ()
+.PP
+Init, Auto probe.
+.PP
+\fBWarning:\fR after issueing an init DO NOT read(). If you do, the read() will block and wont return. the radio doesn't return data after an initialization. You must close the socket, and reopen it. You wont have to reopen the socket with wierd opts, unless you reset the socket to the state as it was before . 
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCRINITM\fR() 
+.PP
+Definition at line 60 of file pcrdef.h.
+.SS #define PCRSIG ()
+.PP
+Signal Update (G3).
+.PP
+Definition at line 63 of file pcrdef.h.
+.SS #define PCRSIGOFF ()
+.PP
+Program should poll status from radio (G300).
+.PP
+Definition at line 65 of file pcrdef.h.
+.SS #define PCRSIGON ()
+.PP
+Radio sends status automagically when a change (G301).
+.PP
+Definition at line 67 of file pcrdef.h.
+.SS #define PCRSIGBOFF ()
+.PP
+Binary mode off (G302).
+.PP
+Definition at line 69 of file pcrdef.h.
+.SS #define PCRSIGBON ()
+.PP
+Binary mode on (G303).
+.PP
+Definition at line 71 of file pcrdef.h.
+.SS #define PCRPWR ()
+.PP
+Power (H1).
+.PP
+Definition at line 74 of file pcrdef.h.
+.SS #define PCRPWROFF ()
+.PP
+Power radio down (H100).
+.PP
+Definition at line 76 of file pcrdef.h.
+.SS #define PCRPWRON ()
+.PP
+Power radio up (H101).
+.PP
+Definition at line 78 of file pcrdef.h.
+.SS #define PCRVOL ()
+.PP
+Volume prefix (J40).
+.PP
+Definition at line 81 of file pcrdef.h.
+.SS #define PCRVOLON ()
+.PP
+Volume at 75 % (J4075).
+.PP
+Definition at line 83 of file pcrdef.h.
+.SS #define PCRVOLOFF ()
+.PP
+Volume at MUTE (J4000).
+.PP
+Definition at line 85 of file pcrdef.h.
+.SS #define PCRSQL ()
+.PP
+Squelch Prefix (J41).
+.PP
+Definition at line 88 of file pcrdef.h.
+.SS #define PCRSQLO ()
+.PP
+Fully Open (J4100).
+.PP
+Definition at line 90 of file pcrdef.h.
+.SS #define PCRSQLC ()
+.PP
+Closed squelch at 45% (J4145).
+.PP
+Definition at line 92 of file pcrdef.h.
+.SS #define PCRIF ()
+.PP
+IF Shift Prefix (J43).
+.PP
+Definition at line 95 of file pcrdef.h.
+.SS #define PCRIFC ()
+.PP
+IF Centered (J4380).
+.PP
+Definition at line 97 of file pcrdef.h.
+.SS #define PCRAGC ()
+.PP
+Automatic Gain Control Prefix (J45).
+.PP
+Definition at line 100 of file pcrdef.h.
+.SS #define PCRAGCOFF ()
+.PP
+AGC Off (J4500).
+.PP
+Definition at line 102 of file pcrdef.h.
+.SS #define PCRAGCON ()
+.PP
+AGC On (J4501).
+.PP
+Definition at line 104 of file pcrdef.h.
+.SS #define PCRNB ()
+.PP
+Noise Blanking Prefix (J46).
+.PP
+Definition at line 107 of file pcrdef.h.
+.SS #define PCRNBOFF ()
+.PP
+Noise Blanking Off (J4600).
+.PP
+Definition at line 109 of file pcrdef.h.
+.SS #define PCRNBON ()
+.PP
+Noise Blanking On (J4601).
+.PP
+Definition at line 111 of file pcrdef.h.
+.SS #define PCRRFA ()
+.PP
+RF Attenuator Prefix.
+.PP
+Definition at line 114 of file pcrdef.h.
+.SS #define PCRRFAOFF ()
+.PP
+RF Attenuator Off (J4700).
+.PP
+Definition at line 116 of file pcrdef.h.
+.SS #define PCRRFAON ()
+.PP
+RF Attenuator On (J4701).
+.PP
+Definition at line 118 of file pcrdef.h.
+.SS #define PCRVSC ()
+.PP
+VSC Prefix (J50).
+.PP
+Definition at line 121 of file pcrdef.h.
+.SS #define PCRVSCOFF ()
+.PP
+VSC Off (J5000).
+.PP
+Definition at line 123 of file pcrdef.h.
+.SS #define PCRVSCON ()
+.PP
+VSC On (J5001).
+.PP
+Definition at line 125 of file pcrdef.h.
+.SS #define PCRTSQL ()
+.PP
+CTCSS - Tone Squelch Prefix (J51).
+.PP
+Definition at line 128 of file pcrdef.h.
+.SS #define PCRTSQLOFF ()
+.PP
+CTCSS - Tone Squelch Off (J5100).
+.PP
+Definition at line 130 of file pcrdef.h.
+.SS #define PCRUNK01 ()
+.PP
+Definition at line 132 of file pcrdef.h.
+.SS #define PCRUNK02 ()
+.PP
+Definition at line 133 of file pcrdef.h.
+.SS #define PCRTFLTR ()
+.PP
+Tracking filter Prefix (LD082).
+.PP
+Definition at line 136 of file pcrdef.h.
+.SS #define PCRTFLTR00 ()
+.PP
+Automagic Tracking Filter (LD8200).
+.PP
+Definition at line 138 of file pcrdef.h.
+.SS #define PCRTFLTR01 ()
+.PP
+Manual Tracking Filter (LD8201).
+.PP
+Definition at line 140 of file pcrdef.h.
+.SS #define PCRFRQ ()
+.PP
+Freq. Header (K0).
+.PP
+Definition at line 143 of file pcrdef.h.
+.SS #define MAXFRQLEN ()
+.PP
+freq. len. 10 bytes (padded) <GMMMKKKHHH> (10).
+.PP
+Definition at line 145 of file pcrdef.h.
+.SS #define LOWERFRQ ()
+.PP
+lower bounds for frequency 50 kHz (50000).
+.PP
+Definition at line 147 of file pcrdef.h.
+.SS #define UPPERFRQ ()
+.PP
+upper bound for frequency 1.3 GHz (1300000000).
+.PP
+Definition at line 149 of file pcrdef.h.
+.SS #define PCRMODLSB ()
+.PP
+Lower sideband (00).
+.PP
+Definition at line 152 of file pcrdef.h.
+.SS #define PCRMODUSB ()
+.PP
+Upper sideband (01).
+.PP
+Definition at line 154 of file pcrdef.h.
+.SS #define PCRMODAM ()
+.PP
+Amplitude Modulated (02).
+.PP
+Definition at line 156 of file pcrdef.h.
+.SS #define PCRMODCW ()
+.PP
+Continuous Mode (03).
+.PP
+Definition at line 158 of file pcrdef.h.
+.SS #define PCRMODUNK ()
+.PP
+unknown mode -- (04).
+.PP
+Definition at line 160 of file pcrdef.h.
+.SS #define PCRMODNFM ()
+.PP
+Narrowband FM (05).
+.PP
+Definition at line 162 of file pcrdef.h.
+.SS #define PCRMODWFM ()
+.PP
+Wideband FM (06).
+.PP
+Definition at line 164 of file pcrdef.h.
+.SS #define PCRFLTR3 ()
+.PP
+3 kHz Filter (00).
+.PP
+Definition at line 167 of file pcrdef.h.
+.SS #define PCRFLTR6 ()
+.PP
+6 kHz Filter (01).
+.PP
+Definition at line 169 of file pcrdef.h.
+.SS #define PCRFLTR15 ()
+.PP
+15 kHz Filter (02).
+.PP
+Definition at line 171 of file pcrdef.h.
+.SS #define PCRFLTR50 ()
+.PP
+50 kHz Filter (03).
+.PP
+Definition at line 173 of file pcrdef.h.
+.SS #define PCRFLTR230 ()
+.PP
+230 kHz Filter (04).
+.PP
+Definition at line 175 of file pcrdef.h.
+.SS #define PCRQSQL ()
+.PP
+Query Squelch Setting (I0).
+.PP
+Definition at line 179 of file pcrdef.h.
+.SS #define PCRQRST ()
+.PP
+Query Signal Strength (I1).
+.PP
+Definition at line 181 of file pcrdef.h.
+.SS #define PCRQOFST ()
+.PP
+Query Frequency Offset (I2).
+.PP
+Definition at line 183 of file pcrdef.h.
+.SS #define PCRQDTMF ()
+.PP
+Query presense of DTMF Tone (I3).
+.PP
+Definition at line 185 of file pcrdef.h.
+.SS #define PCRQWAREZ ()
+.PP
+Query Firmware revision (I4).
+.PP
+Definition at line 187 of file pcrdef.h.
+.SS #define PCRQDSP ()
+.PP
+Query Presense of DSP (I5).
+.PP
+Definition at line 189 of file pcrdef.h.
+.SS #define PCRQCTY ()
+.PP
+Query country / region (I6).
+.PP
+Definition at line 191 of file pcrdef.h.
+.SS #define PCRAOK ()
+.PP
+Reply: Ok (G000).
+.PP
+Definition at line 194 of file pcrdef.h.
+.SS #define PCRABAD ()
+.PP
+Reply: There was an error (G001).
+.PP
+Definition at line 196 of file pcrdef.h.
+.SS #define PCRADSP ()
+.PP
+DSP Header (PCRQDSP).
+.PP
+Definition at line 198 of file pcrdef.h.
+.SS #define PCRADSPNO ()
+.PP
+Not present (GD00).
+.PP
+Definition at line 200 of file pcrdef.h.
+.SS #define PCRADSPOK ()
+.PP
+Present (GD01).
+.PP
+Definition at line 202 of file pcrdef.h.
+.SS #define PCRASQL ()
+.PP
+Squelch Header (PCRQSQL).
+.PP
+Definition at line 204 of file pcrdef.h.
+.SS #define PCRASQLCL ()
+.PP
+Sqlch Closed (04).
+.PP
+Definition at line 206 of file pcrdef.h.
+.SS #define PCRASQLOPN ()
+.PP
+Sqlch Open (07).
+.PP
+Definition at line 208 of file pcrdef.h.
+.SS #define PCRARST ()
+.PP
+Signal Strength (PCRQRST).
+.PP
+\fBnote:\fR You have this header plus 00-FF from weak to strong 
+.PP
+Definition at line 212 of file pcrdef.h.
+.SS #define PCRAOFST ()
+.PP
+Frequency offset Header (PCRQOFST).
+.PP
+\fBnote:\fR plus 00-7F from extreme (-) to near ctr OR plus 81-FF from near ctr to extreme (+) 
+.PP
+Definition at line 216 of file pcrdef.h.
+.SS #define PCRAOFSTCTR ()
+.PP
+Frequency (offset) centered (I280).
+.PP
+Definition at line 218 of file pcrdef.h.
+.SS #define PCRADTMF ()
+.PP
+DTMF Header (PCRQDTMF).
+.PP
+Definition at line 221 of file pcrdef.h.
+.SS #define PCRADTMFNO ()
+.PP
+DTMF Not Heard (I300).
+.PP
+Definition at line 223 of file pcrdef.h.
+.SS #define PCRADTMF0 ()
+.PP
+DTMF 0 (I310).
+.PP
+Definition at line 225 of file pcrdef.h.
+.SS #define PCRADTMF1 ()
+.PP
+DTMF 1 (I311).
+.PP
+Definition at line 227 of file pcrdef.h.
+.SS #define PCRADTMF2 ()
+.PP
+DTMF 2 (I312).
+.PP
+Definition at line 229 of file pcrdef.h.
+.SS #define PCRADTMF3 ()
+.PP
+DTMF 3 (I313).
+.PP
+Definition at line 231 of file pcrdef.h.
+.SS #define PCRADTMF4 ()
+.PP
+DTMF 4 (I314).
+.PP
+Definition at line 233 of file pcrdef.h.
+.SS #define PCRADTMF5 ()
+.PP
+DTMF 5 (I315).
+.PP
+Definition at line 235 of file pcrdef.h.
+.SS #define PCRADTMF6 ()
+.PP
+DTMF 6 (I315).
+.PP
+Definition at line 237 of file pcrdef.h.
+.SS #define PCRADTMF7 ()
+.PP
+DTMF 7 (I316).
+.PP
+Definition at line 239 of file pcrdef.h.
+.SS #define PCRADTMF8 ()
+.PP
+DTMF 8 (I318).
+.PP
+Definition at line 241 of file pcrdef.h.
+.SS #define PCRADTMF9 ()
+.PP
+DTMF 9 (I319).
+.PP
+Definition at line 243 of file pcrdef.h.
+.SS #define PCRADTMFA ()
+.PP
+DTMF A (I31A).
+.PP
+Definition at line 245 of file pcrdef.h.
+.SS #define PCRADTMFB ()
+.PP
+DTMF B (I31B).
+.PP
+Definition at line 247 of file pcrdef.h.
+.SS #define PCRADTMFC ()
+.PP
+DTMF C (I31C).
+.PP
+Definition at line 249 of file pcrdef.h.
+.SS #define PCRADTMFD ()
+.PP
+DTMF D (I31D).
+.PP
+Definition at line 251 of file pcrdef.h.
+.SS #define PCRADTMFS ()
+.PP
+DTMF * (I31E).
+.PP
+Definition at line 253 of file pcrdef.h.
+.SS #define PCRADTMFP ()
+.PP
+DTMF # (I31F).
+.PP
+Definition at line 255 of file pcrdef.h.
+.SS #define PCRBD ()
+.PP
+Baud Rate Header (G1).
+.PP
+Definition at line 259 of file pcrdef.h.
+.SS #define PCRBD300 ()
+.PP
+300 baud (G100).
+.PP
+Definition at line 261 of file pcrdef.h.
+.SS #define PCRBD1200 ()
+.PP
+1200 baud (G101).
+.PP
+Definition at line 263 of file pcrdef.h.
+.SS #define PCRBD2400 ()
+.PP
+2400 baud (G102).
+.PP
+Definition at line 265 of file pcrdef.h.
+.SS #define PCRBD9600 ()
+.PP
+9600 baud (G103).
+.PP
+Definition at line 267 of file pcrdef.h.
+.SS #define PCRBD19200 ()
+.PP
+19200 baud (G104).
+.PP
+Definition at line 269 of file pcrdef.h.
+.SS #define PCRBD38400 ()
+.PP
+38400 baud (G105).
+.PP
+Definition at line 271 of file pcrdef.h.
+.SS #define PCRSBSC ()
+.PP
+bandscope prefix SENT (ME00001).
+.PP
+Definition at line 275 of file pcrdef.h.
+.SS #define PCRRBSC ()
+.PP
+bandscope prefix RECV (NE1).
+.PP
+Definition at line 277 of file pcrdef.h.
+.SS #define PCRRBSC0 ()
+.PP
+packet 0 (NE100).
+.PP
+Definition at line 279 of file pcrdef.h.
+.SS #define PCRRBSC1 ()
+.PP
+packet 1 (NE110).
+.PP
+Definition at line 281 of file pcrdef.h.
+.SS #define PCRRBSC2 ()
+.PP
+packet 2 (NE120).
+.PP
+Definition at line 283 of file pcrdef.h.
+.SS #define PCRRBSC3 ()
+.PP
+packet 3 (NE130).
+.PP
+Definition at line 285 of file pcrdef.h.
+.SS #define PCRRBSC4 ()
+.PP
+packet 4 (NE140).
+.PP
+Definition at line 287 of file pcrdef.h.
+.SS #define PCRRBSC5 ()
+.PP
+packet 5 (NE150).
+.PP
+Definition at line 289 of file pcrdef.h.
+.SS #define PCRRBSC6 ()
+.PP
+packet 6 (NE160).
+.PP
+Definition at line 291 of file pcrdef.h.
+.SS #define PCRRBSC7 ()
+.PP
+packet 7 (NE170).
+.PP
+Definition at line 293 of file pcrdef.h.
+.SS #define PCRRBSC8 ()
+.PP
+packet 8 (NE180).
+.PP
+Definition at line 295 of file pcrdef.h.
+.SS #define PCRRBSC9 ()
+.PP
+packet 9 (NE190).
+.PP
+Definition at line 297 of file pcrdef.h.
+.SS #define PCRRBSCA ()
+.PP
+packet 10 (NE1A0).
+.PP
+Definition at line 299 of file pcrdef.h.
+.SS #define PCRRBSCB ()
+.PP
+packet 11 (NE1B0).
+.PP
+Definition at line 301 of file pcrdef.h.
+.SS #define PCRRBSCC ()
+.PP
+packet 12 (NE1C0).
+.PP
+Definition at line 303 of file pcrdef.h.
+.SS #define PCRRBSCD ()
+.PP
+packet 13 (NE1D0).
+.PP
+Definition at line 305 of file pcrdef.h.
+.SS #define PCRRBSCE ()
+.PP
+packet 14 (NE1E0).
+.PP
+Definition at line 307 of file pcrdef.h.
+.SS #define PCRRBSCF ()
+.PP
+packet 15 (NE1F0).
+.PP
+Definition at line 309 of file pcrdef.h.
+.SH TYPEDEF DOCUMENTATION
+.PP 
+.SS typedef char pcrcmd_t
+.PP
+pcr1000 command string.
+.PP
+Definition at line 30 of file pcrdef.h.
+.SS typedef unsigned long int pcrfreq_t
+.PP
+pcr1000 frequency length.
+.PP
+Definition at line 32 of file pcrdef.h.
+.SH AUTHOR
+.PP 
+Generated automatically by Doxygen for Icom PCR-1000 Library from the source code.

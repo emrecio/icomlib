@@ -1,0 +1,240 @@
+#############################################################################
+# Makefile for building $(SRCDIR)/bin/qpcr1k
+#     Project: qpcr1k
+#    Template: app
+#############################################################################
+
+####### Compiler, tools and options
+
+CC	=	$(P_CC)
+CXX	=	$(P_CXX)
+CFLAGS	=	$(P_PIPE) $(P_DEBUG) $(P_SYS) $(P_GUISTYLE)
+CXXFLAGS=	$(P_PIPE) $(P_DEBUG) $(P_SYS) $(P_GUISTYLE)
+INCPATH	=	-I$(SRCDIR)/include -I$(P_QTINC)
+LINK	=	$(P_LINKER)
+LFLAGS	=	
+LIBS	=	-L$(SRCDIR)/lib -lpcomm -lpcp -L$(P_QTLIB) -lqt -L$(P_X11)/lib -lX11 -lXext
+MOC	=	$(P_MOC)
+
+TAR	=	tar -cf
+GZIP	=	gzip -9f
+
+####### Files
+
+HEADERS =	pmainwindow.h \
+		pmenu.h \
+		ptools.h \
+		pstatus.h \
+		pui.h \
+		pkeybd.h \
+		pdisp.h \
+		pctrl.h \
+		pfileio.h \
+		proedit.h \
+		prodlg.h
+SOURCES =	main.cpp \
+		pmainwindow.cpp \
+		pmenu.cpp \
+		ptools.cpp \
+		pstatus.cpp \
+		pui.cpp \
+		pkeybd.cpp \
+		pdisp.cpp \
+		pctrl.cpp \
+		pfileio.cpp \
+		proedit.cpp \
+		prodlg.cpp
+OBJECTS =	main.o \
+		pmainwindow.o \
+		pmenu.o \
+		ptools.o \
+		pstatus.o \
+		pui.o \
+		pkeybd.o \
+		pdisp.o \
+		pctrl.o \
+		pfileio.o \
+		proedit.o \
+		prodlg.o
+SRCMOC	=	moc_pmainwindow.cpp \
+		moc_pmenu.cpp \
+		moc_ptools.cpp \
+		moc_pstatus.cpp \
+		moc_pui.cpp \
+		moc_pkeybd.cpp \
+		moc_pdisp.cpp \
+		moc_pctrl.cpp \
+		moc_proedit.cpp \
+		moc_prodlg.cpp
+OBJMOC	=	moc_pmainwindow.o \
+		moc_pmenu.o \
+		moc_ptools.o \
+		moc_pstatus.o \
+		moc_pui.o \
+		moc_pkeybd.o \
+		moc_pdisp.o \
+		moc_pctrl.o \
+		moc_proedit.o \
+		moc_prodlg.o
+DIST	=	
+TARGET	=	$(SRCDIR)/bin/qpcr1k
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+all: $(P_QTOK)
+
+n:
+	@echo "Not building QT GUI to radio"
+
+y:	$(TARGET)
+	@echo "Done"
+
+$(TARGET): $(OBJECTS) $(OBJMOC) 
+	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+#tmake: Makefile
+#
+#Makefile: qpcr1k.pro
+#	tmake qpcr1k.pro -o Makefile
+
+dist:
+	$(TAR) qpcr1k.tar qpcr1k.pro $(SOURCES) $(HEADERS) $(DIST)
+	$(GZIP) qpcr1k.tar
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(TARGET)
+	-rm -f *~ core
+
+####### Compile
+
+main.o: main.cpp \
+		pmainwindow.h \
+		pfileio.h \
+		appicon1.xpm
+
+pmainwindow.o: pmainwindow.cpp \
+		pmainwindow.h \
+		pfileio.h \
+		prodlg.h \
+		pui.h \
+		pmenu.h \
+		ptools.h \
+		pstatus.h
+
+pmenu.o: pmenu.cpp \
+		pmenu.h
+
+ptools.o: ptools.cpp \
+		ptools.h \
+		images.xpm
+
+pstatus.o: pstatus.cpp \
+		pstatus.h
+
+pui.o: pui.cpp \
+		pui.h \
+		pkeybd.h \
+		pdisp.h \
+		pctrl.h
+
+pkeybd.o: pkeybd.cpp \
+		pkeybd.h
+
+pdisp.o: pdisp.cpp \
+		pdisp.h
+
+pctrl.o: pctrl.cpp \
+		pctrl.h
+
+pfileio.o: pfileio.cpp \
+		pfileio.h
+
+proedit.o: proedit.cpp \
+		proedit.h
+
+prodlg.o: prodlg.cpp \
+		prodlg.h \
+		pfileio.h
+
+moc_pmainwindow.o: moc_pmainwindow.cpp \
+		pmainwindow.h \
+		pfileio.h
+
+moc_pmenu.o: moc_pmenu.cpp \
+		pmenu.h
+
+moc_ptools.o: moc_ptools.cpp \
+		ptools.h
+
+moc_pstatus.o: moc_pstatus.cpp \
+		pstatus.h
+
+moc_pui.o: moc_pui.cpp \
+		pui.h
+
+moc_pkeybd.o: moc_pkeybd.cpp \
+		pkeybd.h
+
+moc_pdisp.o: moc_pdisp.cpp \
+		pdisp.h
+
+moc_pctrl.o: moc_pctrl.cpp \
+		pctrl.h
+
+moc_proedit.o: moc_proedit.cpp \
+		proedit.h
+
+moc_prodlg.o: moc_prodlg.cpp \
+		prodlg.h
+
+moc_pmainwindow.cpp: pmainwindow.h
+	$(MOC) pmainwindow.h -o moc_pmainwindow.cpp
+
+moc_pmenu.cpp: pmenu.h
+	$(MOC) pmenu.h -o moc_pmenu.cpp
+
+moc_ptools.cpp: ptools.h
+	$(MOC) ptools.h -o moc_ptools.cpp
+
+moc_pstatus.cpp: pstatus.h
+	$(MOC) pstatus.h -o moc_pstatus.cpp
+
+moc_pui.cpp: pui.h
+	$(MOC) pui.h -o moc_pui.cpp
+
+moc_pkeybd.cpp: pkeybd.h
+	$(MOC) pkeybd.h -o moc_pkeybd.cpp
+
+moc_pdisp.cpp: pdisp.h
+	$(MOC) pdisp.h -o moc_pdisp.cpp
+
+moc_pctrl.cpp: pctrl.h
+	$(MOC) pctrl.h -o moc_pctrl.cpp
+
+moc_proedit.cpp: proedit.h
+	$(MOC) proedit.h -o moc_proedit.cpp
+
+moc_prodlg.cpp: prodlg.h
+	$(MOC) prodlg.h -o moc_prodlg.cpp
+

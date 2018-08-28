@@ -1,0 +1,1212 @@
+.TH PCP 3 "17 Jan 2000" "Icom PCR-1000 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PCP \- PCP is the Main API for documentation of the class. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pcp.h>\fR
+.PP
+.SS Public Members
+
+.in +1c
+.ti -1c
+.RI "\fBPCP\fR (char *port=PCPDefaultPort, tcflag_t speed=PCPDefaultSpeed, const char *name=0)"
+.br
+.RI "\fIPCP Object constructor.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fB~PCP\fR ()"
+.br
+.RI "\fIYour friendly destructor.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPInit\fR (bool autoUpdate=false)"
+.br
+.RI "\fIInitialise the radio.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPPowerUp\fR ()"
+.br
+.RI "\fIPowers the radio on.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPPowerDown\fR ()"
+.br
+.RI "\fIPowers the radio down.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetSpeed\fR (tcflag_t)"
+.br
+.RI "\fISets the speed for current session.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetPort\fR (const char *)"
+.br
+.RI "\fISet the port for the current session.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetVolume\fR (int)"
+.br
+.RI "\fISet the current session's volume.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetSquelch\fR (int)"
+.br
+.RI "\fISet the current session's squelch.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetFreq\fR (\fBpcrfreq_t\fR)"
+.br
+.RI "\fISet the current frequency.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetMode\fR (const char *)"
+.br
+.RI "\fISet the current session's mode.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetFilter\fR (const char *)"
+.br
+.RI "\fISets current session's filter.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBPCPSigStrength\fR ()"
+.br
+.RI "\fIQuerys the signal strength (int version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPSigStrengthStr\fR ()"
+.br
+.RI "\fISignal strength query. (const char * version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetToneSq\fR (const char*)"
+.br
+.RI "\fISets current session CTCSS.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetToneSq\fR (float)"
+.br
+.RI "\fISets session CTCSS based on a float value.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetAutoGain\fR (bool)"
+.br
+.RI "\fIToggle autogain functionality.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetNB\fR (bool)"
+.br
+.RI "\fIToggle Noiseblanking functionality.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPSetRFAttenuator\fR (bool)"
+.br
+.RI "\fIToggle RF Attenuation functionality.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPIsOn\fR ()"
+.br
+.RI "\fIInquire radio status.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPQueryOn\fR ()"
+.br
+.RI "\fIQuerys radio acutator status.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPQuerySquelch\fR ()"
+.br
+.RI "\fIQuerys radio's squelch status.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetPort\fR ()"
+.br
+.RI "\fIGets current port / serial device setting.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "tcflag_t \fBPCPGetSpeed_t\fR ()"
+.br
+.RI "\fIGets current speed (tcflag_t version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetSpeed\fR ()"
+.br
+.RI "\fIGets current speed (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBPCPGetVolume\fR ()"
+.br
+.RI "\fIGets current session's volume setting (int version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetVolumeStr\fR ()"
+.br
+.RI "\fIGets current session's volume setting (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBPCPGetSquelch\fR ()"
+.br
+.RI "\fIGets current session's squelch setting (int version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetSquelchStr\fR ()"
+.br
+.RI "\fIGets current session's squelch setting (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBpcrfreq_t\fR \fBPCPGetFreq\fR ()"
+.br
+.RI "\fIGets current session's frequency setting (pcrfreq_t version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetFreqStr\fR ()"
+.br
+.RI "\fIGets current session's frequency setting (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const \fBpcrcmd_t\fR* \fBPCPGetMode\fR ()"
+.br
+.RI "\fIGets current session's mode setting (pcrcmd_t version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetModeStr\fR ()"
+.br
+.RI "\fIGets current session's mode setting (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const \fBpcrcmd_t\fR* \fBPCPGetFilter\fR ()"
+.br
+.RI "\fIGets current session's filter setting (pcrcmd_t version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetFilterStr\fR ()"
+.br
+.RI "\fIGet the current session's filter setting (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetToneSq\fR ()"
+.br
+.RI "\fIGets the current session's tone squelch (undecoded version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetToneSqStr\fR ()"
+.br
+.RI "\fIGets the current session's tone squelch (decoded version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPGetAutoGain\fR ()"
+.br
+.RI "\fIGet current session's autogain value (bool version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetAutoGainStr\fR ()"
+.br
+.RI "\fIGet current session's autogain value (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPGetNB\fR ()"
+.br
+.RI "\fIGet current session's noiseblank value (bool version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetNBStr\fR ()"
+.br
+.RI "\fIGet current session's noiseblank value (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPGetRFAttenuator\fR ()"
+.br
+.RI "\fIGet current session's RF Attenuation value (bool version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPGetRFAttenuatorStr\fR ()"
+.br
+.RI "\fIGet current session's RF Attenuation value (const char* version).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const \fBPRadInf\fR \fBPCPGetRadioInfo\fR ()"
+.br
+.RI "\fIRetrieves the current radio struct.\fR"
+.PP
+
+.in -1c
+.SS Private Members
+
+.in +1c
+.ti -1c
+.RI "bool \fBPCPCheckResponse\fR ()"
+.br
+.RI "\fIInternally called method to check radio response.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBPComm\fR* \fBPCPComm\fR"
+.br
+.RI "\fIThe currently active Primitive Communication Object ( \fBPComm\fR ).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPStatus\fR"
+.br
+.RI "\fIThe state of the \fBPComm\fR object (on or off).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPErrRead\fR"
+.br
+.RI "\fIWas there an error reading from the \fBPComm\fR object?\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBPCPTemp\fR [256]"
+.br
+.RI "\fITemporary buffer to hold PCP string data.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "struct \fBPRadInf\fR* \fBPCPRadio\fR"
+.br
+.RI "\fICurrently active radio data.\fR"
+.PP
+
+.in -1c
+.SH DETAILED DESCRIPTION
+.PP 
+PCP is the Main API for documentation of the class.
+.PP
+PCP Is the actual object that interfaces with the GUI This API deals with the error handling and the calls that must be made to and from the radio, via the \fBPComm\fR serial i/o object.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPComm\fR \fBpcrdef.h\fR 
+.PP
+Definition at line 82 of file pcp.h.
+.SH MEMBER FUNCTION DOCUMENTATION
+.PP 
+.SS PCP::PCP (char * port = PCPDefaultPort, tcflag_t speed = PCPDefaultSpeed, const char * name = 0)
+.PP
+PCP Object constructor.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIport\fR\fR the device to open 
+.TP
+\fB\fIspeed\fR\fR the initial baudrate to open at 
+.TP
+\fB\fIname\fR\fR internal object name
+.PP
+Initialises the radio device and sets the default variables to: 
+.br
+ 
+.TP
+\fCPCPSpeed\fR to \fIspeed\fR 
+.TP
+\fCPCPVolume\fR to 0 
+.TP
+\fCPCPSquelch\fR to 0 
+.TP
+\fCPCPFreq\fR to 146.000 MHz 
+.TP
+\fCPCPMode\fR to \fBPCRMODNFM\fR() 
+.PP
+Definition at line 41 of file pcp.cpp.
+.SS PCP::~PCP ()
+.PP
+Your friendly destructor.
+.PP
+Deletes the Primitive Communication ( \fBPComm\fR ) object before exitting. 
+.PP
+Definition at line 79 of file pcp.cpp.
+.SS bool PCP::PCPInit (bool autoUpdate = false)
+.PP
+Initialise the radio.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIautoUpdate\fR\fR Initialise the radio in \fIautoUpdate\fR mode
+.PP
+This function sends the initialsation command(s). Due to the hardware taking some time to initialize, we sleep for one second to let it catch up, then check to see if the radio was on. If it *was* on then it checks for a response.
+.PP
+After PCPCheckResponse tells it that the command succeeded, it sets PCPRadio->PCPAutoUpdate mode appropriately.
+.PP
+\fBReturns: \fR
+.in +1c
+On success : true otherwise false.
+.PP
+\fBSee also: \fR
+.in +1c
+PCPAutoUpdate \fBPCPCheckResponse\fR() \fBPCPStatus\fR 
+.PP
+Definition at line 90 of file pcp.cpp.
+.SS bool PCP::PCPPowerUp ()
+.PP
+Powers the radio on.
+.PP
+Turns the radio's receiver on. By sending the command code \fBPCRPWRON\fR()
+.PP
+\fBReturns: \fR
+.in +1c
+true or false ( based on \fBPCPCheckResponse\fR() )
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPPowerDown\fR() \fBPCPCheckResponse\fR() \fBPCPStatus\fR \fBPCRPWRON\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 131 of file pcp.cpp.
+.SS bool PCP::PCPPowerDown ()
+.PP
+Powers the radio down.
+.PP
+Turns the radio's receiver off. By sending the command code PCRPWROFF
+.PP
+\fBReturns: \fR
+.in +1c
+true or false ( based on \fBPCPCheckResponse\fR() )
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPPowerUp\fR() \fBPCPCheckResponse\fR() \fBPCPStatus\fR \fBPCRPWROFF\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 152 of file pcp.cpp.
+.SS bool PCP::PCPSetSpeed (tcflag_t speed)
+.PP
+Sets the speed for current session.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIspeed\fR\fR baudrate as defined in termios.h
+.PP
+First we check to see if the baudrate passed in \fIspeed\fR is right, if not then we just quietly return false. Then we decode \fIspeed\fR and set PCPInitSpeed to \fBpcrcmd_t\fR version.
+.PP
+Then we tell the radio to switch speeds and set baudrate on the port by destroying \fBPComm\fR and reinitiating it with the new baud setting
+.PP
+\fBWarning:\fR follow these procedures to use this function. 
+.TP
+create the object (at last known baudrate). 
+.TP
+call init 
+.TP
+call power up 
+.TP
+call this function 
+.TP
+delete the object 
+.TP
+create the object with the new speed setting 
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on success. 
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetSpeed\fR() \fBPCPGetSpeed_t\fR() \fBpcrcmd_t\fR \fBpcrdef.h\fR \fBPCPComm\fR 
+.PP
+Definition at line 173 of file pcp.cpp.
+.SS bool PCP::PCPSetPort (const char * port)
+.PP
+Set the port for the current session.
+.PP
+Sets port by closing the filedes and reopening it on the new port.
+.PP
+\fBReturns: \fR
+.in +1c
+true or false if the serial device can be opened on the new port.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetPort\fR() \fBPComm::PCOpen\fR() \fBPComm::PCClose\fR() 
+.PP
+Definition at line 246 of file pcp.cpp.
+.SS bool PCP::PCPSetVolume (int volume)
+.PP
+Set the current session's volume.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIvolume\fR\fR an integer between 0 and 99
+.PP
+sprintf converts (and combines) the cmd \fBPCRVOL\fR() with the argument, such that the argument has a minimum field width of two chars. If the field is < 2 chars (ie: arg=5) then it pads the field with one zero.
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on \fBPCPCheckResponse\fR() to indicate success or failure
+.PP
+\fBSee also: \fR
+.in +1c
+PCPVolume \fBpcrcmd_t\fR \fBpcrdef.h\fR 
+.PP
+Definition at line 263 of file pcp.cpp.
+.SS bool PCP::PCPSetSquelch (int squelch)
+.PP
+Set the current session's squelch.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIsquelch\fR\fR an integer between 0 and 99
+.PP
+sprintf converts (and combines) the cmd \fBPCRSQL\fR() with the argument \fIsquelch\fR , such that the argument has a minimum field width of two chars. If the field is < 2 chars (ie: arg=5) then it pads the field with one zero.
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on \fBPCPCheckResponse\fR() to indicate success or failure
+.PP
+\fBSee also: \fR
+.in +1c
+PCPSquelch \fBpcrcmd_t\fR \fBpcrdef.h\fR 
+.PP
+Definition at line 292 of file pcp.cpp.
+.SS bool PCP::PCPSetFreq (\fBpcrfreq_t\fR freq)
+.PP
+Set the current frequency.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIfreq\fR\fR passed frequency compliant to pcrfreq_t
+.PP
+check to see if the frequencies are within bounds. populate a string, with correctly padded 0's based on the frequency fed in.
+.PP
+ This method, \fBPCPSetMode\fR() and \fBPCPSetFilter\fR() take the following steps 
+.TP
+ copy the header, 
+.TP
+ concat the newly converted/padded frequency, 
+.TP
+ concat mode, 
+.TP
+ concat filter, 
+.TP
+ concat suffix. 
+.PP
+send the command to the radio, if it checks out set this as the new frequency
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on success or failure 
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBpcrfreq_t\fR \fBPCRFRQ\fR() 
+.PP
+Definition at line 322 of file pcp.cpp.
+.SS bool PCP::PCPSetMode (const char * mode)
+.PP
+Set the current session's mode.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fImode\fR\fR plain text string of mode (eg: "USB")
+.PP
+Valid arguments for \fImode:\fR 
+.TP
+\fCUSB\fR upper side band 
+.TP
+\fCLSB\fR lower side band 
+.TP
+\fCAM\fR amplitude modulated 
+.TP
+\fCNFM\fR narrow band FM 
+.TP
+\fCWFM\fR wide band FM 
+.TP
+\fCCW\fR continuous waveThe concept is the same as above ( \fBPCPSetFreq\fR() ) except it accepts standard text for "USB"/"LSB" etc... Use of the pcrdef codes are not necessary, they will be decoded based on \fImode.\fR
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on success or failure
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPRadio\fR \fBpcrdef.h\fR 
+.PP
+Definition at line 374 of file pcp.cpp.
+.SS bool PCP::PCPSetFilter (const char * filter)
+.PP
+Sets current session's filter.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIfilter\fR\fR character string version of the filter
+.PP
+Valid arguments for \fIfilter:\fR 
+.TP
+\fC3\fR 3.0 kHz 
+.TP
+\fC6\fR 6.0 kHz 
+.TP
+\fC15\fR 15.0 kHz 
+.TP
+\fC50\fR 50.0 kHz 
+.TP
+\fC230\fR 230.0 kHzThe concept is the same as above ( \fBPCPSetMode\fR() ) it accepts standard text for "3"/"6" etc... Use of the pcrdef codes are not necessary, they will be decoded based on \fIfilter.\fR
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on success or failure
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPRadio\fR \fBpcrdef.h\fR 
+.PP
+Definition at line 441 of file pcp.cpp.
+.SS int PCP::PCPSigStrength ()
+.PP
+Querys the signal strength (int version).
+.PP
+\fBReturns: \fR
+.in +1c
+integer value of 0-255 on signal strength.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPSigStrengthStr\fR() \fBPCRQRST\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 766 of file pcp.cpp.
+.SS const char * PCP::PCPSigStrengthStr ()
+.PP
+Signal strength query. (const char * version).
+.PP
+Querys radio to read the current signal strength.
+.PP
+\fBReturns: \fR
+.in +1c
+null on failure, otherwise a character string with the current signal strenth. This includes the I1 header, plus the last two characters which is the \fBhex\fR value from \fI00-99\fR
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPSigStrength\fR() \fBPCRQRST\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 739 of file pcp.cpp.
+.SS bool PCP::PCPSetToneSq (const char * value)
+.PP
+Sets current session CTCSS.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIvalue\fR\fR character string of 01-35 hex
+.PP
+set's the tone squelch for the radio. The default is value 00 for off. The values are \fBNOT\fR the hz, but the pcrdef.h vals, 01=67.0 02=69.3 etc...
+.PP
+The valid for \fIvalue\fR are \fBhex\fR values from \fI00\fR for off through \fI35\fR
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on \fBPCPCheckResponse\fR() success or failure.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBPCRTSQL\fR() 
+.PP
+Definition at line 503 of file pcp.cpp.
+.SS bool PCP::PCPSetToneSq (float passvalue)
+.PP
+Sets session CTCSS based on a float value.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIpassvalue\fR\fR tone squelch in Hz
+.PP
+Since the previous method requires the programmer to remember the PCR-1000's internal number that corresponds to the tone squelch frequency, this overloaded method allows the programmer to pass a float, where the float is the frequency (Hz) in question.
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on \fBPCPCheckResponse\fR() success or failure. On failure, it turns off CTCSS and returns false.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBPCRTSQL\fR() 
+.PP
+Definition at line 537 of file pcp.cpp.
+.SS bool PCP::PCPSetAutoGain (bool value)
+.PP
+Toggle autogain functionality.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIvalue\fR\fR true or false for autogain on or off
+.PP
+Valid values for \fIvalue\fR are: 
+.TP
+\fCtrue\fR to activate autogain 
+.TP
+\fCfalse\fR to deactivate autogainSets the automagic gain control to \fIvalue\fR (on/off) true/false... checks the radio response if ok, then sets the value
+.PP
+\fBReturns: \fR
+.in +1c
+true, on success otherwise returns false
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCRAGC\fR() \fBPCRAGCON\fR() \fBPCRAGCOFF\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 623 of file pcp.cpp.
+.SS bool PCP::PCPSetNB (bool value)
+.PP
+Toggle Noiseblanking functionality.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIvalue\fR\fR true or false for noiseblanking on or off
+.PP
+Valid values for \fIvalue\fR are: 
+.TP
+\fCtrue\fR to activate noiseblanking 
+.TP
+\fCfalse\fR to deactivate noiseblankingSets the noise blanking to \fIvalue\fR (on/off) true/false... checks the radio response if ok, then sets the value
+.PP
+\fBReturns: \fR
+.in +1c
+true, on success otherwise returns false
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetNB\fR() \fBPCPGetNBStr\fR() \fBPCRNB\fR() \fBPCRNBON\fR() \fBPCRNBOFF\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 655 of file pcp.cpp.
+.SS bool PCP::PCPSetRFAttenuator (bool value)
+.PP
+Toggle RF Attenuation functionality.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIvalue\fR\fR true or false for RF Attenuation on or off
+.PP
+Valid values for \fIvalue\fR are: 
+.TP
+\fCtrue\fR to activate RF Attenuation 
+.TP
+\fCfalse\fR to deactivate RF AttenuationSets the RF Attenuation to \fIvalue\fR (on/off) true/false... checks the radio response if ok, then sets the value
+.PP
+\fBReturns: \fR
+.in +1c
+true, on success otherwise returns false
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetRFAttenuator\fR() \fBPCPGetRFAttenuatorStr\fR() \fBPCRRFA\fR() \fBPCRRFAON\fR() \fBPCRRFAOFF\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 687 of file pcp.cpp.
+.SS bool PCP::PCPIsOn ()
+.PP
+Inquire radio status.
+.PP
+Check to see if the radio is on based on the internally stored data. This function should only be called after the object has been initiated and is ready for use.
+.PP
+\fBReturns: \fR
+.in +1c
+true or false for radio on or off.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPQueryOn\fR() 
+.PP
+Definition at line 723 of file pcp.cpp.
+.SS PCP::PCPQueryOn ()
+.PP
+Querys radio acutator status.
+.PP
+Actually querys the radio for a status on it's receiver state (on or off). This differs from \fBPCPIsOn\fR() in that it makes a call to the radio, rather than checking a local variable
+.PP
+\fBReturns: \fR
+.in +1c
+true if the radio's receiver is on, false otherwise.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPIsOn\fR() 
+.PP
+Definition at line 802 of file pcp.cpp.
+.SS bool PCP::PCPQuerySquelch ()
+.PP
+Querys radio's squelch status.
+.PP
+Actually querys the radio for a status on it's squelch state (open or closed).
+.PP
+\fBReturns: \fR
+.in +1c
+true if the radio's squelch is open or false otherwise.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPIsOn\fR() 
+.PP
+Definition at line 832 of file pcp.cpp.
+.SS PCP::PCPGetPort ()
+.PP
+Gets current port / serial device setting.
+.PP
+Checks the \fBPCPRadio\fR struct for member PCPPort for the current port (serial) device setting (pathname).
+.PP
+\fBReturns: \fR
+.in +1c
+character string consisting of the current session's device name (pathname)
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPSetPort\fR() 
+.PP
+Definition at line 862 of file pcp.cpp.
+.SS tcflag_t PCP::PCPGetSpeed_t ()
+.PP
+Gets current speed (tcflag_t version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPSpeed for the current speed (baudrate) setting.
+.PP
+\fBReturns: \fR
+.in +1c
+tcflag_t baudrate.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetSpeed\fR() 
+.PP
+Definition at line 882 of file pcp.cpp.
+.SS const char * PCP::PCPGetSpeed ()
+.PP
+Gets current speed (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPSpeed for the current speed (baudrate) setting. Decodes the tcflag_t baudrate in the struct
+.PP
+\fBReturns: \fR
+.in +1c
+const character string baudrate
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetSpeed_t\fR() 
+.PP
+Definition at line 897 of file pcp.cpp.
+.SS int PCP::PCPGetVolume ()
+.PP
+Gets current session's volume setting (int version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPVolume for the current volume \fB(hex)\fR setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the integer value from \fI00-ff\fR
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetVolumeStr\fR() 
+.PP
+Definition at line 927 of file pcp.cpp.
+.SS const char * PCP::PCPGetVolumeStr ()
+.PP
+Gets current session's volume setting (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPVolume for the current volume \fB(hex)\fR setting. Decodes the hex to a character string
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of current volume setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetVolume\fR() 
+.PP
+Definition at line 942 of file pcp.cpp.
+.SS int PCP::PCPGetSquelch ()
+.PP
+Gets current session's squelch setting (int version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPSquelch for the current squelch \fB(hex)\fR setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the integer value from \fI00-ff\fR
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetSquelchStr\fR() 
+.PP
+Definition at line 959 of file pcp.cpp.
+.SS const char * PCP::PCPGetSquelchStr ()
+.PP
+Gets current session's squelch setting (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPSquelch for the current squelch \fB(hex)\fR setting. Decodes the integer into a character string
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of current squelch setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetSquelchStr\fR() 
+.PP
+Definition at line 974 of file pcp.cpp.
+.SS \fBpcrfreq_t\fR PCP::PCPGetFreq ()
+.PP
+Gets current session's frequency setting (pcrfreq_t version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPFreq for the current frequency setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the pcrfreq_t of current frequency setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetFreqStr\fR() 
+.PP
+Definition at line 991 of file pcp.cpp.
+.SS const char * PCP::PCPGetFreqStr ()
+.PP
+Gets current session's frequency setting (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPFreq for the current frequency setting. It converts the pcrfreq_t into a character string.
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of current frequency setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetFreq\fR() 
+.PP
+Definition at line 1008 of file pcp.cpp.
+.SS const \fBpcrcmd_t\fR * PCP::PCPGetMode ()
+.PP
+Gets current session's mode setting (pcrcmd_t version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPMode for the current mode setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the pcrcmd_t of current mode setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetModeStr\fR() 
+.PP
+Definition at line 1026 of file pcp.cpp.
+.SS const char * PCP::PCPGetModeStr ()
+.PP
+Gets current session's mode setting (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPMode for the current mode setting. Decodes the mode setting to plain english equivalent.
+.PP
+\fBReturns: \fR
+.in +1c
+the plain english of current mode setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetMode\fR() \fBPCPSetMode\fR() 
+.PP
+Definition at line 1041 of file pcp.cpp.
+.SS const \fBpcrcmd_t\fR * PCP::PCPGetFilter ()
+.PP
+Gets current session's filter setting (pcrcmd_t version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPFilter for the current filter setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the pcrcmd_t of the current filter setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetFilterStr\fR() \fBPCPSetFilter\fR() 
+.PP
+Definition at line 1081 of file pcp.cpp.
+.SS const char * PCP::PCPGetFilterStr ()
+.PP
+Get the current session's filter setting (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPFilter for the current filter setting. It then decodes the \fBpcrcmd_t\fR version into standard string values.
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of the current filter setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetFilter\fR() \fBPCPSetFilter\fR() 
+.PP
+Definition at line 1096 of file pcp.cpp.
+.SS const char * PCP::PCPGetToneSq ()
+.PP
+Gets the current session's tone squelch (undecoded version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPToneSq for the current tone squelch setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of the current tone squelch setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetToneSqStr\fR() \fBPCPSetToneSq\fR() 
+.PP
+Definition at line 1131 of file pcp.cpp.
+.SS const char * PCP::PCPGetToneSqStr ()
+.PP
+Gets the current session's tone squelch (decoded version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPToneSq for the current tone squelch setting. It is decoded into plain english and it's value returned.
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of the current tone squelch setting
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetToneSq\fR() \fBPCPSetToneSq\fR() 
+.PP
+Definition at line 1146 of file pcp.cpp.
+.SS bool PCP::PCPGetAutoGain ()
+.PP
+Get current session's autogain value (bool version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPAutoGain for the current auto-gain setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the boolean of the current setting. True/false :: On/off.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetAutoGainStr\fR() \fBPCPSetAutoGain\fR() 
+.PP
+Definition at line 1164 of file pcp.cpp.
+.SS const char * PCP::PCPGetAutoGainStr ()
+.PP
+Get current session's autogain value (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPAutoGain for the current auto-gain setting. Decodes true and false into string values "1" and "0".
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of the current setting.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetAutoGain\fR() \fBPCPSetAutoGain\fR() 
+.PP
+Definition at line 1179 of file pcp.cpp.
+.SS bool PCP::PCPGetNB ()
+.PP
+Get current session's noiseblank value (bool version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPNoiseBlank for the current auto-gain setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the boolean of the current setting. True/false :: On/off.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetNBStr\fR() \fBPCPSetNB\fR() 
+.PP
+Definition at line 1197 of file pcp.cpp.
+.SS const char * PCP::PCPGetNBStr ()
+.PP
+Get current session's noiseblank value (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPNoiseBlank for the current auto-gain setting. Decodes the boolean value into the string "1" for true or "0" for false
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of the current setting. True/false :: "1"/"0"
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetNB\fR() \fBPCPSetNB\fR() 
+.PP
+Definition at line 1212 of file pcp.cpp.
+.SS bool PCP::PCPGetRFAttenuator ()
+.PP
+Get current session's RF Attenuation value (bool version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPRFAttenuator for the current RF Attenuation setting.
+.PP
+\fBReturns: \fR
+.in +1c
+the boolean of the current setting. True/false :: On/off.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetRFAttenuatorStr\fR() \fBPCPSetRFAttenuator\fR() 
+.PP
+Definition at line 1230 of file pcp.cpp.
+.SS const char * PCP::PCPGetRFAttenuatorStr ()
+.PP
+Get current session's RF Attenuation value (const char* version).
+.PP
+Checks \fBPCPRadio\fR struct for member PCPRFAttenuator for the current session's RF Attenuation setting. Decodes the boolean value into "1" for true or "0" for false.
+.PP
+\fBReturns: \fR
+.in +1c
+the character string of the current setting. True/false :: "1"/"0"
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCPGetRFAttenuator\fR() \fBPCPSetRFAttenuator\fR() 
+.PP
+Definition at line 1245 of file pcp.cpp.
+.SS const \fBPRadInf\fR PCP::PCPGetRadioInfo ()
+.PP
+Retrieves the current radio struct.
+.PP
+this gets the current radio information struct in case the user wants to save the state of the radio. 
+.PP
+\fBReturns: \fR
+.in +1c
+const \fBPRadInf\fR 
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPRadInf\fR 
+.PP
+Definition at line 1263 of file pcp.cpp.
+.SS bool PCP::PCPCheckResponse ()\fC [private]\fR
+.PP
+Internally called method to check radio response.
+.PP
+read from the radio for the \fBPCRAOK\fR() and \fBPCRABAD\fR() reply.
+.PP
+\fBReturns: \fR
+.in +1c
+\fItrue\fR - for PCRAOK \fIfalse\fR - for PCRABAD \fIfalse\fR - and sets ErrRead to true if garbage was read. 
+.PP
+Definition at line 1268 of file pcp.cpp.
+.SH MEMBER DATA DOCUMENTATION
+.PP 
+.SS \fBPComm\fR* PCP::PCPComm\fC [private]\fR
+.PP
+The currently active Primitive Communication Object ( \fBPComm\fR ).
+.PP
+Definition at line 150 of file pcp.h.
+.SS bool PCP::PCPStatus\fC [private]\fR
+.PP
+The state of the \fBPComm\fR object (on or off).
+.PP
+Definition at line 152 of file pcp.h.
+.SS bool PCP::PCPErrRead\fC [private]\fR
+.PP
+Was there an error reading from the \fBPComm\fR object?
+.PP
+Definition at line 154 of file pcp.h.
+.SS char PCP::PCPTemp[256]\fC [private]\fR
+.PP
+Temporary buffer to hold PCP string data.
+.PP
+Definition at line 156 of file pcp.h.
+.SS struct \fBPRadInf\fR* PCP::PCPRadio\fC [private]\fR
+.PP
+Currently active radio data.
+.PP
+Definition at line 159 of file pcp.h.
+
+.SH AUTHOR
+.PP 
+Generated automatically by Doxygen for Icom PCR-1000 Library from the source code.

@@ -1,0 +1,97 @@
+#############################################################################
+# Makefile for building libplog.so.1.0
+#     Project: plog
+#    Template: lib
+#############################################################################
+
+####### Compiler, tools and options
+
+CC	=	$(P_CC)
+CXX	=	$(P_CXX)
+CFLAGS	=	$(P_PIPE) $(P_DEBUG) -fPIC $(P_SYS)
+CXXFLAGS=	$(P_PIPE) $(P_DEBUG) -fPIC $(P_SYS)
+INCPATH	=	-I$(SRCDIR)/include
+LINK	=	$(P_LINK)
+LFLAGS	=	$(P_LFLAGS_PLOG)
+LIBS	=	
+AR	=	ar cqs
+RANLIB	=	
+MOC	=	moc
+
+TAR	=	tar -cf
+GZIP	=	gzip -9f
+
+####### Files
+
+HEADERS =	plog.h
+SOURCES =	plog.cpp
+OBJECTS =	plog.o
+SRCMOC	=	
+OBJMOC	=	
+DIST	=	
+TARGET	=	libplog.so.1.0
+TARGETA	=	$(SRCDIR)/lib/libplog.a
+TARGETD	=	libplog.so.1.0
+TARGET0	=	libplog.so
+TARGET1	=	libplog.so.1
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+all: $(SRCDIR)/lib/libplog.so.1.0
+
+$(SRCDIR)/lib/libplog.so.1.0: $(OBJECTS) $(OBJMOC) 
+	-rm -f $(TARGET) $(TARGET0) $(TARGET1)
+	$(LINK) $(LFLAGS) -o $(TARGETD) $(OBJECTS) $(OBJMOC) $(LIBS)
+	-ln -s $(TARGET) $(TARGET0)
+	-ln -s $(TARGET) $(TARGET1)
+	-rm -f $(SRCDIR)/lib/$(TARGET)
+	-rm -f $(SRCDIR)/lib/$(TARGET0)
+	-rm -f $(SRCDIR)/lib/$(TARGET1)
+	-mv $(TARGET) $(TARGET0) $(TARGET1) $(SRCDIR)/lib/
+
+staticlib: $(TARGETA)
+
+$(TARGETA): $(OBJECTS) $(OBJMOC) 
+	-rm -f $(TARGETA)
+	$(AR) $(TARGETA) $(OBJECTS) $(OBJMOC)
+#
+#moc: $(SRCMOC)
+#
+#tmake: Makefile
+#
+#Makefile: plog.pro
+#	tmake plog.pro -o Makefile
+#
+dist:
+	$(TAR) plog.tar plog.pro $(SOURCES) $(HEADERS) $(DIST)
+	$(GZIP) plog.tar
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(TARGET)
+	-rm -f $(TARGET0) $(TARGET1) $(TARGETA)
+	-rm -f *~ core
+
+####### Compile
+
+plog.o: plog.cpp \
+		plog.h
+

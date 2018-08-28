@@ -1,0 +1,8 @@
+# SunOS configuration file
+
+P_LINKER=$(P_CXX)
+P_X11=/usr/openwin
+P_LFLAGS_PCOMM=-dy -G
+P_LFLAGS_PCP=-dy -G
+P_LFLAGS_PLOG=-dy -G
+P_LINK=$(P_LINKER)

@@ -1,0 +1,451 @@
+This is a spectrum analysis program for the ICOM PCR1000 radio. Currently
+the program is in it's very early stages of development. It still crashes
+now an then. It currently sweeps any frequency range using any mode, step
+size, filter, att, nb, etc.
+
+Please understand that the program is still in it's early stages of
+development. This is a preview version only. I am making it available so
+that I can receive some input on bugs and suggestions. I strongly encourage
+input from users. I recomment that you cycle the PCR1000 power before
+running the application. If the application crashes. Cycle the radio's power
+and try again.
+
+   * [Image]
+
+   * This is a screen shows a frequency sweep and the start and stop times.
+
+     [Image] Saves the Sweep in BMP Format.
+
+     [Image] Prints the Sweep. (NA)
+
+     [Image] Sets Start Frequency.
+
+     [Image] Sets Stop Frequency.
+
+     [Image] Sets Step Frequency.
+
+     [Image] Sets Receive Frequency.
+
+     [Image] Sets Mode to NFM and 15 K Filter.
+
+     [Image] Sets Mode to USB and 2.8 K Filter.
+
+     * Traffic arrows moves a sweep page left or right.
+
+     * Left Click on Sweep QSY's to that frequency.
+
+     * Right Click on Sweep Zooms in +/- 100KHz and the mode is set to USB,
+     6K
+
+     *Right Click on Frequency label Sweeps +/- 100KHz centered on current
+     receive frequency.
+
+   * If the RE SWEEP button is checked the radio will automatically re-sweep
+     when it reached the end. To end continuous sweep just click on the STOP
+     button.
+
+   * START, STOP, and STEP frequencies can be entered by using the pulldown
+     menus or by pressing F6 F7 F8 respectively
+
+   * The AGC when checked means that the AGC is FAST. Sweeping only works ok
+     when the AGC is Fast. Otherwise the slow response of the AGC voltage
+     causes roll-off of the response.
+
+   * The sweep speed is currently around 1500 points / minute.
+
+   * The program now supports Comm 1 to 8. (I Think!)
+
+   * There appears to be a misterious glitch in the PCR1000. When sweeping
+     in FMN mode, the radio will pop 50 KHz below a strong signal. Using SSB
+     and NB sometimes fixes the problem. I am still investigating the cause.
+
+
+
+Thanks to all the users that have e-mailed me their inputs.
+
+Pieter
+
+N4IP
+
+
+
+  ------------------------------------------------------------------------
+
+PCR1000 Command Set. (commands compiled so far)
+
+This commands have been compiled from the scanner newsgroups.This is
+information that has been uploaded by users worldwide. I am just serving as
+a keeper of the commands discovered. I have not tried these commands
+therefore I cannot guarantee their accuracy. Use at own's risk. If you have
+any additions please send me some e-mail.
+
+N4IPieter
+
+
+
+When radio is first turned on, the software Typically sends the following
+commands:
+
+H101 ' Turns Radio on (sent at 9600 baud. Radio seems to always boot up at
+9600 baud)
+G4? ' Maybe inquires the radio version or is the DSP installed?
+G105 ' Sets baud rate to 38400
+G300 ' Sets updating to off. That way the radio wont be sending junk during
+setup.
+H1? ' Inquires if radio is still alive
+G301 ' Sets updating to on. Radio will automatically send info when things
+change like s meter moves or DTMF received. See I replies.
+GE? ' Not Known
+GD? ' Not Known
+J4A80 ' Not Known
+LD82000 ' Not Known
+J8001 ' Not Known
+J8100 ' Not Known
+J8200 ' Not Known
+J8300 ' Not Known
+J4070 ' Sets Volume
+
+Radio Commands
+
+* Most commands are followed by a CRLF=CHR$(13)+CHR$(10)
+
+* To keep the radio from turning off after 15 seconds or so, keeping the RTS
+line high (+V) seems to do the job.
+
+RTS is pin4 (25 pin connector) and pin7 (9 pin connector)
+
+FF means a value between 00 and FF
+
+Signal Update
+G3xx
+00 = off (Program needs to inquire signal strength, DTMF tone, Center, etc)
+01 = on (Radio sends signal strength, DTMF tone, etc as needed)
+02 = binary mode (Update off)
+03 = binary mode (Update on)
+
+Inquire signal information
+
+I0? Squelch Status (maybe???)
+I1? Signal Strength
+I2? Signal Centering
+I3? DTMF Tone
+
+Alive:
+H1? Is radio alive? Radio responds H101 (on) or H100 (off)
+
+Volume:
+J40FF
+
+Squelch: (Set J50 afterwards)
+J41FF
+
+IF Shift:
+J43FF
+
+Band Scope (see below for details)
+On = ME0000114050501000ssss ssss = step in Hz
+Off = ME0000114050500000ssss ssss = step in Hz
+
+AGC on = J4501
+AGC off = J4500
+
+NB on = J4601
+NB off = J4600
+
+Attenuator on = J4701
+Attenuator off = J4700
+
+VSC on = J5000
+VSC off = J5001
+
+T Squelch on = J51tt (tt=tone , 01=67Hz, 33=254.1Hz)
+T Squelch off = J5100
+
+Frequency: (last 2 zeros might be DSP setting)
+K0GMMMKKKHHHmmff00
+G=GHz, MMM=MHz, KKK=KHz, HHH=Hz
+mm is mode
+00 = LSB, 01 = USB, 02 = AM, 03 = CW, 04=?? , 05 = NFM, 06 = WFM
+ff is filter
+00 = 3K, 01 = 6K, 02 = 15K, 03 = 50K, 04 = 230K
+
+Radio Replies
+
+I0ss Squelch open? ss=07 open, ss=04 closed
+I1ss ss is Signal Strength 00 to FF
+I200 Signal Frequency < Display Frequency
+I280 Signal Frequency = Display Frequency
+I2FF Signal Frequency > Display Frequency
+
+I300 No DTMF Present
+I31t t is DTMF tone (* = E, # = F)
+
+Baud Rate
+G1xx
+00 = 300
+01 = 1200
+02 = 4800
+03 = 9600
+04 = 19200
+05 = 38400
+
+Signal Update
+G3xx
+00 = off (Program needs to inquire signal strength, DTMF tone, Center, etc)
+01 = on (Radio sends signal strength, DTMF tone, etc as needed)
+02 = binary mode (Update off)
+03 = binary mode (Update on)
+
+  ------------------------------------------------------------------------
+
+Icom PCR1000 Band Scope commands.
+
+The basic command to turn the bandscope function On is:
+
+ME0000120050100012500 + CR + LF
+
+The command breaks down this way:
+
+ME00001 20050100012500
+ME00001 is the prefix. It's always the same.
+
+ME00001 20 050100012500
+20 is the number of samples. It must be a 2 digit HEX number
+represented in ASCII. Add leading 0 if necessary. Calculate
+this number by dividing the Scope Bandwidth by the step size. For
+example in the +- 200 Khz span the total bandwidth is 400 Khz. If the
+step size is 12.5 khz then 400/12.5 is 32 or 20 Hex. If you get a non
+integer answer for the initial division then increment the sample
+number by 1 or 2. You can arbitrarily set the sample higher (SLIGHTLY)
+to allow the display to be moved inward from the edges of the scope
+display.
+
+ME0000120 05 0100012500
+05 is a sample rate value that detiremines how fast the
+scope is swept and in the Icom software is either 05 or 28. This is
+interpreted as a hex number and must be 2 digits. The practical values
+for this runs from 01 (very fast and resource intensive) to about
+70 (very slow and nearly useless). Putting 00 here is not valid.
+In the Icom software the number of samples detiremine this
+value. Sample numbers above 10 hex use 05 and those 10 Hex or lower
+use 28 Hex.
+
+ME000012005 01 00012500
+01 This is the On/Off characters. If they are 00 then
+the bandscope is OFF. If they are 01 the bandscope is ON
+
+ME00001200501 00 012500
+00 is a padding value and must be there.
+
+ME0000120050100 012500
+012500 is the step size expressed in HERTZ. It must
+be 6 digits long, padded with LEADING ZEROS. Examples are 001000 for
+1000 hertz (1 Khz), 030000 for 30 Khz and 100000 for 100 Khz. The
+bandscope accepts values down to at least 10 hertz but the Icom
+software displays a LIMIT warning at 1 Khz and at 100 Khz. You must
+limit how small the step size is (for a given scope width in (Khz) to
+prevent the number of samples from getting too large.
+Eg. (Bandwidth/step) CANNOT exceed FF hex or 255 decimal.
+
+The Band Scope commands appear to be insensitive to mode and bandwidth
+settings except for the fact that it doesn't work in USB, LSB or CW.
+
+Typical Band Scope Commands:
+
+ME00001C8050100001000 +- 100 Khz @ 1 Khz
+ME0000164050100001000 +- 50
+ME0000132050100001000 +- 25
+
+ME00001A0050100002500 +- 200 Khz @ 2.5 Khz
+ME0000150050100002500 +- 100
+ME0000128050100002500 +- 50
+ME0000114050100002500 +- 25
+
+ME0000150050100005000 +- 200 Khz @ 5.0 Khz
+ME0000128050100005000 +- 100
+ME0000114050100005000 +- 50
+ME000010A280100005000 +- 25
+
+ME0000140050100006250 +- 200 Khz @ 6.25 Khz
+ME0000120050100006250 +- 100
+ME0000110280100006250 +- 50
+ME0000108280100006250 +- 25
+
+ME000012E050100009000 +- 200 Khz @ 9.0 Khz
+ME0000118050100009000 +- 100
+ME000010C280100009000 +- 50
+ME0000106280100009000 +- 25
+
+ME0000128050100010000 +- 200 Khz @ 10.0 Khz
+ME0000114050100010000 +- 100
+ME000010A280100010000 +- 50
+ME0000106280100010000 +- 25
+
+ME0000120050100012500 +- 200 Khz @ 12.5 Khz
+ME0000110280100012500 +- 100
+ME0000110280100012500 +- 50
+ME0000108280100012500 +- 25
+
+ME0000114050100020000 +- 200 Khz @ 20.0 Khz
+ME000010A280100020000 +- 100
+ME0000106280100020000 +- 50
+ME0000104280100020000 +- 25
+
+ME0000110280100025000 +- 200 Khz @ 25.0 Khz
+ME0000108280100025000 +- 100
+ME0000104280100025000 +- 50
+ME0000100280100025000 +- 25
+
+ME000010E280100030000 +- 200 Khz @ 30.0 Khz
+ME0000108280100030000 +- 100
+ME0000104280100030000 +- 50
+ME0000100280100030000 +- 25
+
+ME0000108280100050000 +- 200 Khz @ 50.0 Khz
+ME0000104280100050000 +- 100
+ME0000100280100050000 +- 50 Note 00 sample size This is invalid!
+
+ME0000104280100100000 +- 200 Khz @ 100.0 Khz
+ME0000100280100100000 +- 100 Invalid
+ME0000100280100100000 +- 50 Invalid
+
+**********************************************************************
+
+The data is returned in 38 byte packets. The LAST digit of the packet
+is discarded in calculations making the usable packet length 37 digits.
+The packets begin with the Letters NE1 followed by the 2 digit hex
+packet number. The Packet numbers run from 00 to F0.
+The available packet numbers are NE100, NE110, NE120, NE130, NE140,
+NE150, NE160, NE170, NE180, NE190, NE1A0, NE1B0, NE1C0, NE1D0,
+NE1E0 and NE1F0.
+
+NOTE that ONLY the 4th digit in this prefix changes.
+
+Having 16 packets holding 16 levels allows a Maximum of 255 (numbered
+01 to FF..00 is invalid) samples.
+
+The packet prefix is followed by 32 bytes that contain signal level
+information for EACH sample (16 per packet).
+
+Each byte pair is a hex number (in ascii) that can run from 00 to FF. The
+Bytes in packet NE180 represent the first 16 samples UP from and
+including the displayed frequency (in ascending order). The bytes in
+packet NE170 represent the 16 samples BELOW the displayed frequency in
+descending order. For example the following:
+
+NE18020202020202020202020202020202020
+
+NE1 80 20202020202020202020202020202020
+NE1 is the fixed prefix
+
+NE1 80 20202020202020202020202020202020
+80 is the packet number. Second digit ALWAYS 0
+
+NE180 20 202020202020202020202020202020
+20 is the sample signal level (20 Hex) at the displayed frequency
+
+NE18020 20 2020202020202020202020202020
+This is the next sample level UP from the displayed freq
+
+The next 14 values represent the next 14 sample levels. If less samples
+are needed, the higher samples are set to 00. If more then 16
+sanple levels are needed Up from the center freq, then the next packet
+NE190 hold the values.
+
+For the following:
+NE17000000000000000001111111111111111
+
+NE1 7000000000000000001111111111111111
+NE1 is the fixed prefix
+
+NE1 70 00000000000000001111111111111111
+70 is the packet number. Packet 70 is the first packet BELOW the
+center frequency.
+
+NE170000000000000000011111111111111 11
+11 This is the first sample level
+BELOW the center frequency.
+
+NE1700000000000000000111111111111 11 11
+11 This is the next LOWER sample
+level and so on. In these examples, only 16 (10 Hex) samples were
+specified. 8 samples are provided here below center freq and the
+corresponding 8 above center freq would be in the NE180 packet.
+
+If more then the 32 samples that can be displayed with NE170 and NE180
+were specified then additional packets would be sent. For example if
+48(decimal) samples were specified then the following packets would be
+returned: NE160 would have 8 samples (in the UPPER 8)
+NE170 would have 16 samples
+NE180 would have 16 samples
+NE190 would have 8 samples (in the LOWER 8)
+
+Note that they are sent in ascending order from NE160 to NE190.
+A rough indication of the number of packets needed for a given sample
+size is (Number of samples)/16 plus 1.
+
+Sample in order sent (This is a continous string):
+NE1600000000000000000000030180FA61F14
+NE1701F2B0C0F7E030C2B85088E080F2B4314
+NE1801B8E181830085FEC6603083001143003
+NE19001030101012701000000000000000000
+
+When Band Scope is first turned ON or is turned OFF, ALL 16 packets
+are returned with samples set to 00 (except packet 80).
+
+Here are the commands for the UT-106 DSP unit.
+
+The commands below have to be sent as a packet
+followed by a Cr + Lf
+
+sample packet
+
+J8001J8101J820FJ8301
+|   |  is always there and never changes
+
+J8001J8101J820FJ8301
+     |   |  DSP ON  J8100 is DSP Off
+
+J8001J8101J820FJ8301
+          |   | ANR on and set to max would be J8200 if off
+
+J8001J8101J820FJ8301
+               |   | Notch turned ON  J8301 turns notch ON
+
+With this in mind here is the DSP Command Set:
+
+On startup the software sends GD?
+  Returns GD00 if NO DSp installed
+  Returns GD01 if DSP Installed
+
+Autoupdate must be ON (send G301 + cr + lf):
+
+J8001  Always the same
+
+J81xx  where xx is 00 if DSP is OFF and 01 if ON
+
+J82xx  This is the ANR function (Automatic Noise Reduction)
+       xx is 00 if ANR is OFF.  If ON, xx varies from 01 to 0F
+       when you turn a knob on the new DSP Popup panel.
+
+J83xx  is the Automatic Notch filter.  xx is 00 if notch
+       is OFF and 01 if ON.
+
+The following data is written to the PCR1000.ini file.
+
+DSPON  with either 0 or 1 for Off/On
+DSPANF with either 0 or 1 for Off/On
+DSPNR  with either 0 or 1 for Off/On
+DSPNRLEVEL with value 0 to 15 for Noise Reduction level
+
+  ------------------------------------------------------------------------
+
+   * 73's de N4IP
+
+   * Pieter
+
+   * n4ip@mindspring.com
+
+   * [Image]  Specialized Radio Resources
+
+     [Image]  About Pieter Ibelings

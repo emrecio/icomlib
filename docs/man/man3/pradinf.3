@@ -1,0 +1,206 @@
+.TH PRadInf 3 "17 Jan 2000" "Icom PCR-1000 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PRadInf \- Holds radio information. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pcp.h>\fR
+.PP
+.SS Public Members
+
+.in +1c
+.ti -1c
+.RI "char \fBPCPPort\fR [64]"
+.br
+.RI "\fICurrently active port/device.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "tcflag_t \fBPCPSpeed\fR"
+.br
+.RI "\fICurrently set speed (tcflag_t var).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBPCPInitSpeed\fR [8]"
+.br
+.RI "\fICurrently set speed (char * version, unstable).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBPCPVolume\fR"
+.br
+.RI "\fICurrently set volume.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBPCPSquelch\fR"
+.br
+.RI "\fICurrently set squlech.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBpcrfreq_t\fR \fBPCPFreq\fR"
+.br
+.RI "\fICurrently set frequency.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBpcrcmd_t\fR \fBPCPMode\fR [128]"
+.br
+.RI "\fICurrently set radio Mode.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBpcrcmd_t\fR \fBPCPFilter\fR [128]"
+.br
+.RI "\fICurrently set radio Filter.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPAutoUpdate\fR"
+.br
+.RI "\fICurrently set update mode?\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "const char* \fBPCPToneSq\fR"
+.br
+.RI "\fICurrently set CTCSS (const char*, unstable).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "float \fBPCPToneSqFloat\fR"
+.br
+.RI "\fICurrently set CTCSS (float).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPAutoGain\fR"
+.br
+.RI "\fICurrenly set autogain.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPNoiseBlank\fR"
+.br
+.RI "\fICurrently set noiseblanking.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCPRFAttenuator\fR"
+.br
+.RI "\fICurrently set RF Attenuation.\fR"
+.PP
+
+.in -1c
+.SH DETAILED DESCRIPTION
+.PP 
+Holds radio information.
+.PP
+Stores the important radio information for the current state of the radio. 
+.PP
+Definition at line 38 of file pcp.h.
+.SH MEMBER DATA DOCUMENTATION
+.PP 
+.SS char PRadInf::PCPPort[64]
+.PP
+Currently active port/device.
+.PP
+Definition at line 40 of file pcp.h.
+.SS tcflag_t PRadInf::PCPSpeed
+.PP
+Currently set speed (tcflag_t var).
+.PP
+Definition at line 42 of file pcp.h.
+.SS char PRadInf::PCPInitSpeed[8]
+.PP
+Currently set speed (char * version, unstable).
+.PP
+Definition at line 44 of file pcp.h.
+.SS int PRadInf::PCPVolume
+.PP
+Currently set volume.
+.PP
+Definition at line 46 of file pcp.h.
+.SS int PRadInf::PCPSquelch
+.PP
+Currently set squlech.
+.PP
+Definition at line 48 of file pcp.h.
+.SS \fBpcrfreq_t\fR PRadInf::PCPFreq
+.PP
+Currently set frequency.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBpcrfreq_t\fR 
+.PP
+Definition at line 51 of file pcp.h.
+.SS \fBpcrcmd_t\fR PRadInf::PCPMode[128]
+.PP
+Currently set radio Mode.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBpcrcmd_t\fR 
+.PP
+Definition at line 54 of file pcp.h.
+.SS \fBpcrcmd_t\fR PRadInf::PCPFilter[128]
+.PP
+Currently set radio Filter.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBpcrcmd_t\fR 
+.PP
+Definition at line 57 of file pcp.h.
+.SS bool PRadInf::PCPAutoUpdate
+.PP
+Currently set update mode?
+.PP
+Definition at line 59 of file pcp.h.
+.SS const char* PRadInf::PCPToneSq
+.PP
+Currently set CTCSS (const char*, unstable).
+.PP
+Definition at line 62 of file pcp.h.
+.SS float PRadInf::PCPToneSqFloat
+.PP
+Currently set CTCSS (float).
+.PP
+Definition at line 64 of file pcp.h.
+.SS bool PRadInf::PCPAutoGain
+.PP
+Currenly set autogain.
+.PP
+Definition at line 66 of file pcp.h.
+.SS bool PRadInf::PCPNoiseBlank
+.PP
+Currently set noiseblanking.
+.PP
+Definition at line 68 of file pcp.h.
+.SS bool PRadInf::PCPRFAttenuator
+.PP
+Currently set RF Attenuation.
+.PP
+Definition at line 70 of file pcp.h.
+
+.SH AUTHOR
+.PP 
+Generated automatically by Doxygen for Icom PCR-1000 Library from the source code.

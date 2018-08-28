@@ -1,0 +1,8 @@
+# linux configuration file
+
+P_LINKER=$(P_CXX)
+P_X11=/usr/X11R6
+P_LFLAGS_PCOMM=-shared -Wl,-soname,libpcomm.so.1
+P_LFLAGS_PCP=-shared -Wl,-soname,libpcp.so.1
+P_LFLAGS_PLOG=-shared -Wl,-soname,libplog.so.1
+P_LINK=$(P_LINKER)

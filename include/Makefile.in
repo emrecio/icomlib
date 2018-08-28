@@ -1,0 +1,22 @@
+PCOMMHEAD	= $(SRCDIR)/src/pcomm/pcomm.h \
+		  $(SRCDIR)/src/pcomm/pcrdef.h
+
+PCPHEAD		= $(SRCDIR)/src/pcp/pcp.h
+
+PLOGHEAD	= $(SRCDIR)/src/plog/plog.h
+
+all: clean
+	ln -f $(PLOGHEAD) .
+	ln -f $(PCOMMHEAD) .
+	ln -f $(PCPHEAD) .
+
+clean:
+	rm -f core *~ *.h *.cpp
+
+testvar:
+	@echo "****$(PWD)****"
+	@echo "*** LIBS   $(LIBS)"
+	@echo "*** SRCDIR $(SRCDIR)"
+	@echo "*** $(PCOMMHEAD) "
+	@echo "*** $(PCPHEAD) "
+	@echo "*** $(PLOGHEAD) "

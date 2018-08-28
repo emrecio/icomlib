@@ -1,0 +1,8 @@
+# BSD configuration file
+
+P_LINKER=ld
+P_X11=/usr/X11R6
+P_LFLAGS_PCOMM=-Bshareable -soname libpcomm.so.1
+P_LFLAGS_PCP=-Bshareable -soname libpcp.so.1
+P_LFLAGS_PLOG=-Bshareable -soname libplog.so.1
+P_LINK=$(P_LINKER)

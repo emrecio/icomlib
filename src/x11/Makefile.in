@@ -1,0 +1,4 @@
+all:
+	-cd qpcr1k; make 
+clean:
+	-cd qpcr1k; make clean

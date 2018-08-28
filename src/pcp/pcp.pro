@@ -1,0 +1,8 @@
+TEMPLATE	= lib
+CONFIG		= warn_on debug
+DESTDIR		= $(SRCDIR)/lib
+HEADERS		= pcp.h 
+SOURCES		= pcp.cpp
+INCLUDEPATH	= $(SRCDIR)/include
+#DEFINES		= DEBUG_VER_ LINUX
+DEFINES		= LINUX

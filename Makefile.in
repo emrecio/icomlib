@@ -1,0 +1,61 @@
+#############################################################################
+# Makefile for building targets in sub directories.
+#############################################################################
+
+MAKEFILE=	Makefile
+SUBDIRS	=	include \
+		src
+LIBS	=	-L$(SRCDIR)/lib -lpcomm -lpcp -lplog
+INCPATH	=	-I$(SRCDIR)/include 
+
+all: .buildopts $(SUBDIRS)
+
+$(SUBDIRS): FORCE
+	cd $@; $(MAKE)
+
+clean:
+	for i in $(SUBDIRS); \
+	do ( cd $$i ;\
+		 $(MAKE) clean ) ; done
+
+distclean: clean
+	-rm -f `find . -name Makefile -print`
+
+install: all 
+	@echo "-----------------------------------------------------"
+	@echo "| installing under $(PREFIX)/bin the binaries"
+	@echo "-----------------------------------------------------"
+	install -m 0755 -g bin -o root -d $(PREFIX)/bin
+	install -m 0755 -g bin -o root -b -S old -s $(SRCDIR)/bin/pcr $(PREFIX)/bin 
+	install -m 0755 -g bin -o root -b -S old -s $(SRCDIR)/bin/pcroff $(PREFIX)/bin
+	install -m 0755 -g bin -o root -b -S old -s $(SRCDIR)/bin/qpcr1k $(PREFIX)/bin
+	@echo "-----------------------------------------------------"
+	@echo "| done installing the binaries "
+	@echo "-----------------------------------------------------"
+	@echo "| installing under $(PREFIX)/lib the libraries"
+	@echo "-----------------------------------------------------"
+	install -m 0755 -g bin -o root -d $(PREFIX)/lib
+	install -m 0644 -g bin -o root -s $(SRCDIR)/lib/lib* $(PREFIX)/lib
+	@echo "-----------------------------------------------------"
+	@echo "| done installing the libraries "
+	@echo "-----------------------------------------------------"
+	@echo "| installing under $(PREFIX)/include the headers"
+	@echo "-----------------------------------------------------"
+	install -m 0755 -g bin -o root -d $(PREFIX)/include
+	install -m 0644 -g bin -o root $(SRCDIR)/include/*.h $(PREFIX)/include
+	@echo
+	@echo "***********************************************"
+	@echo "  WARNING! Dont forget to add $(PREFIX)/lib   "
+	@echo "           to your LD_LIBRARY_PATH or run            "
+	@echo "		  'ldconfig' as root on the system"
+	@echo "***********************************************"
+	@echo
+
+#.buildopts: Makefile
+#	@echo
+#	@echo " 	You must run configure script before "
+#	@echo " 	you can build the library "
+#	@echo " 	Make will now abort with an error "
+#	@echo
+
+FORCE: 

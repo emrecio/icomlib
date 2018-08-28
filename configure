@@ -1,0 +1,233 @@
+#!/bin/sh
+#
+#
+# Configures to build the Icom PCR1000 Applications and supporting
+# library.
+#
+# Copyright 1999, 2000 Polywog, Javaman of Ghetto.Org. All rights reserved.
+#
+
+USEQT=y
+
+if [ -z ${QTDIR} ];
+then
+	echo ''
+	echo ' The enviornment variable $QTDIR is not set. Will not '
+	echo ' build the QT PCR1000 X-Windows GUI.'
+	echo ''
+	USEQT=n
+fi
+
+# remove the build options file
+[ -f .buildopts ] && rm .buildopts
+
+######################################################
+# get system info
+
+MACHINE=`(uname -m) 2>/dev/null` || MACHINE=unkown
+RELEASE=`(uname -r) 2>/dev/null` || RELEASE=unknown
+SYSTEM=`(uname -s) 2>/dev/null` || SYSTEM=unknown
+VERSION=`(uname -v) 2>/dev/null` || VERSION=unknown
+
+#if [ "${SYSTEM}" = "BSD/OS" -o "${SYSTEM}" = "OpenBSD" ]; then
+if [ "${SYSTEM}" = "BSD/OS" ]; then
+	SYSTEM=BSD
+fi
+
+######################################################
+# set the variable's defaults
+
+DEBUG="n"
+SHARED="y"
+PREFIX="/usr/local"
+P_CC=gcc
+P_CXX=g++
+P_DEBUG="-O2"
+P_PIPE=""
+P_SYS="-D$SYSTEM"
+P_QTDIR=${QTDIR}
+P_QTLIB=${QTDIR}/lib
+P_QTINC=${QTDIR}/include
+P_GUISTYLE="-DCDE_STYLE"
+P_MOC=${QTDIR}/bin/moc
+P_LINKER=${P_CXX}
+SRCDIR=`pwd`
+I_FLAGS=
+l_FLAGS=
+L_FLAGS=
+GUISTYLE=
+
+# parse the arguments seting y or n.
+
+while [ -n "$1" ]; do
+ case $1 in
+  -guistyle)
+	shift; GUISTYLE=$1
+	;;
+  -platform)
+	shift; PLATFORM=$1
+	;;
+  -cc)
+	shift; P_CC=$1
+	;;
+  -CC)
+	shift; P_CXX=$1
+	;;
+  -prefix)
+	shift; PREFIX=$1
+	;;
+  -release)
+	DEBUG=n
+	echo " Building with release code "
+	;;
+  -debug)
+	DEBUG=y
+	echo " Building with verbose debugging information -you prolly dont want this"
+	;;
+  -shared)
+	SHARED=y
+	echo " Building shared "
+	;;
+  -static)
+	SHARED=n
+	echo " Static libraries not yet supported "
+	HELP=y
+	ERROR=y
+	;;
+  -moc)
+	shift; P_MOC=$1
+	USEQT=y
+	;;
+  -qtdir)
+	USEQT=y
+	shift; P_QTDIR=$1
+	P_QTINC="${P_QTDIR}/include"
+	P_QTLIB="${P_QTDIR}/lib"
+	;;
+  -qtinc)
+	USEQT=y
+	shift; P_QTINC=$1
+	;;
+  -qtlibs)
+	USEQT=y
+	shift; P_QTLIB=$1
+	;;
+  -h | -help | --help)
+	HELP=y
+	;;
+  *)
+	echo $1: unknown argument
+	HELP=y
+	ERROR=y  
+	;;
+esac
+  shift
+done
+
+# usage message if something got f0x0red
+
+if [ "$HELP" = "y" ]; then
+   [ "$ERROR" = "y" ] && echo
+  cat <<EOF
+Usage: $0 [-debug | -release] \\
+	  [-shared | -static] \\
+	  [-platform <Linux | SunOS | BSD>] \\
+	  [ -prefix </usr/local> ] \\
+	  [ -guistyle <cde | motif | win95 | sgi | none> ]\\
+	  [ -linker <ld | g++ | ...> ] \\
+	  [[ -qtlibs </path/to/qt/lib> \\ 
+	   -qtinc </path/to/qt/include> \\
+           -moc </path/to/moc>          ] |\\
+	   [ -qtdir </path/to/qt>         ]]
+	
+EOF
+
+  [ "$ERROR" = "y" ] && exit 1
+  exit 0;
+fi
+
+# debug?
+if [ "${DEBUG}" = "y" ]; then
+	P_DEBUG="-g -Wall -W -DDEBUG_VER_"
+fi
+
+if [ -z "${GUISTYLE}" ]; then
+	P_GUISTYLE="-DSGI_STYLE"
+	GUISTYLE="SGI_STYLE"
+else 
+	case ${GUISTYLE} in
+		cde) 
+			P_GUISTYLE="-DCDE_STYLE"
+		;;
+		motif)
+			P_GUISTYLE="-DMOTIF_STYLE"
+		;;
+		sgi)
+			P_GUISTYLE="-DSGI_STYLE"
+		;;
+		win95)
+			P_GUISTYLE="-DWINDOWS_STYLE"
+		;;
+		none)
+			P_GUISTYLE="-DQT_STYLE"
+		;;
+	esac
+fi
+
+
+######################################################
+# give feedback
+echo
+echo " Configuring for $SYSTEM"
+echo " Building with C Compiler = $P_CC "
+echo " Building with C++ Compiler, $P_CXX"
+echo " Using 'moc' in $P_MOC "
+if [ "$USEQT" = "y" ]; then
+	echo " Using QTDIR in $P_QTDIR "
+	echo " Using QT Include files from $P_QTINC "
+	echo " Using QT Libraries from $P_QTLIB "
+	echo " Using GUI Style of $GUISTYLE "
+fi
+
+################################################
+# create the build options file.
+
+cat > .buildopts <<EOF
+SRCDIR	=$SRCDIR
+PREFIX	=$PREFIX
+P_DEBUG =$P_DEBUG
+P_CC	=$P_CC
+P_CXX	=$P_CXX
+P_SYS	=$P_SYS
+P_MOC	=$P_MOC
+P_QTLIB	=$P_QTLIB
+P_QTINC	=$P_QTINC
+P_LINKER=$P_LINKER
+P_LINK	=$P_LINKER
+P_QTOK	=$USEQT
+P_GUISTYLE=$P_GUISTYLE
+
+EOF
+
+#################################################
+# select the configuration file
+#
+
+CONFIG="configs/${SYSTEM}"
+
+
+#####################################################
+# create the makefiles for the individual directories
+
+for i in `find . -name Makefile.in -print | sort`; do
+	D=`dirname $i`/Makefile
+	Mf=${D}.in
+	cat > ${D} <<EOF
+######
+# automagically built by $0
+######
+
+EOF
+	cat .buildopts $CONFIG $Mf >> $D
+	echo ' created ' $D
+done

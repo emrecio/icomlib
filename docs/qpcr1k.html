@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE>QPCR1k Reference Guide</TITLE>
+	<META NAME="GENERATOR" CONTENT="StarOffice/5.1 (Linux)">
+	<META NAME="AUTHOR" CONTENT="Elmo Recio">
+	<META NAME="CREATED" CONTENT="20000128;1161500">
+	<META NAME="CHANGEDBY" CONTENT="Elmo Recio">
+	<META NAME="CHANGED" CONTENT="20000128;1161500">
+	<META NAME="CLASSIFICATION" CONTENT="ICOM PCR-1000 X-Windows GUI Controller">
+	<META NAME="DESCRIPTION" CONTENT="This is the handbook for the X-Windows GUI controller for the Icom PCR1000">
+	<META NAME="KEYWORDS" CONTENT="ICOM,icom,pcr1000,pcr-1000,qt,xwindows,gui,unix,linux,sunos">
+</HEAD>
+<BODY>
+<P ALIGN=CENTER><FONT FACE="new century schoolbook, serif"><FONT SIZE=5>Qpcr1k
+Documentation</FONT></FONT></P>
+<P ALIGN=LEFT><FONT FACE="new century schoolbook, serif"><FONT SIZE=4 STYLE="font-size: 16pt">Introduction
+(raison d'etre)</FONT></FONT></P>
+<P STYLE="margin-left: 2cm; page-break-before: auto"><FONT FACE="new century schoolbook, serif">	Basically
+Javaman and I came up with an idea to create the PCR-1000 API and
+command line interface at Mogel's house party. We were piss drunk at
+the time and decided what a better way to contribute to both our
+hobbies at once.</FONT></P>
+<P STYLE="margin-left: 2cm"><FONT FACE="new century schoolbook, serif">	Of
+course we were stupid. After all, we were drunk. We didnt know how
+much work it was really going to be. And all it would have been was a
+passing thought. But now we have finally (four months later) finished
+up the first usable version (one that won't erase your harddrive ;)
+ehhe.</FONT></P>
+<P STYLE="margin-left: 2cm"><FONT FACE="new century schoolbook, serif">	We
+started from the ground up. The first file that I started writing was
+the PCRDEF.H file. This file is the definitions of the most of the
+known radio control codes. Check out the documentation that we have
+on that file. We are sure you will find it interesting. The second
+layer that we started writing was the <I>Primitive Communications
+Object.</I><SPAN STYLE="font-style: normal"> This is the low level
+layer that actually communicates with the radio. And finally, what
+the GUI/CLI actually uses the PCP object. </SPAN></FONT>
+</P>
+<P STYLE="font-style: normal"><FONT FACE="new century schoolbook, serif"><FONT SIZE=4 STYLE="font-size: 16pt">Mad
+About The Styles</FONT></FONT></P>
+<P STYLE="margin-left: 2cm; font-style: normal"><FONT FACE="new century schoolbook, serif"><FONT SIZE=3>This
+section specifically describes the compile time options for the GUI. </FONT></FONT>
+</P>
+<OL>
+	<LI><P STYLE="font-style: normal"><FONT FACE="new century schoolbook, serif"><FONT SIZE=3><SPAN STYLE="font-weight: medium">Styles</SPAN><BR>Basically,
+	you have several different styles you can impliment when compiling
+	the GUI. Depending on your current platform, you can compile it to
+	fit right in with whatever navtive windowing system you are using.
+	So if, for example, you are compiling it to run on a Windows 95
+	machine, you can give the command line option at configure time to
+	<I>win95</I>.</FONT></FONT></P>
+</OL>
+<UL>
+	<UL>
+		<LI><P><FONT FACE="new century schoolbook, serif"><SPAN STYLE="font-style: normal"><FONT SIZE=3>cde</FONT></SPAN>
+		<BR>With the CDE style, you can set the GUI to mimic a CDE widget
+		set. This will complement your Sun Solaris box and seamlessly fit
+		right in.</FONT></P>
+		<LI><P><FONT FACE="new century schoolbook, serif">motif<BR>Running
+		MWM as your window manager? Well, worry not! For setting the style
+		to <I>motif</I><SPAN STYLE="font-style: normal"> will automagically
+		blend the GUI right in with the rest of your applications.</SPAN></FONT></P>
+		<LI><P><FONT FACE="new century schoolbook, serif">win95<BR>So you
+		are <I>fortunate</I><SPAN STYLE="font-style: normal"> enough to be
+		running this on an X-Windows server on your Windows 95 box. Well,
+		if you can scare away the BSOD's long enough to play with this
+		application on your win95 box, setting this style will make it look
+		like it was just </SPAN><I>made</I><SPAN STYLE="font-style: normal">
+		natively for your Windows machine.</SPAN></FONT></P>
+		<LI><P><FONT FACE="new century schoolbook, serif">sgi<BR>And of
+		course, you are indeed lucky (*cough* rich *cough*) enough to own
+		an Irix box, then worry no more! For setting the GUI style to this
+		will make your QPCR1k application blend right in with the rest of
+		your system. Although, for those of you whom have never seen SGI
+		forms widgets, this style might also be confused with the FLTK, or
+		MacOS widgets.</FONT></P>
+		<LI><P><FONT FACE="new century schoolbook, serif">none <BR>Lest not
+		be forgotten the apathetic. This sets it to the default widget set
+		in use by the Trolls at Qt.</FONT></P>
+	</UL>
+</UL>
+<P><FONT FACE="new century schoolbook, serif"><FONT SIZE=4 STYLE="font-size: 16pt">Getting
+Started</FONT></FONT></P>
+<P><FONT SIZE=3><FONT FACE="new century schoolbook, serif">	Did it
+compile? YAY! Ok, well, now let's get started really quickly. When
+you did a <I>make install</I><SPAN STYLE="font-style: normal"> the
+binaries were installed into the /usr/local/bin (by default, it could
+have been changed by you to a different </SPAN><I>prefix</I><SPAN STYLE="font-style: normal">)
+Three binaries were installed into this directory, and were stripped
+of all debug code before the install (this is a good thing, it makes
+the binaries smaller.)</SPAN></FONT></FONT> Now what's left is to
+check out the GUI. You can run the GUI by issueing the command
+<I>/usr/local/bin/qpcr1k</I> after a short second you will notice the
+radio click and the GUI come up. 
+</P>
+<P>	If you have never run this program before you will notice that
+the frequency is tuned to <I>146.000.000</I><SPAN STYLE="font-style: normal">
+MHz. The volume and squelch is all the way down, the CTCSS is off,
+the filter is set to </SPAN><I>15 kHz</I><SPAN STYLE="font-style: normal">,
+step size is set to </SPAN><I>1 kHz</I><SPAN STYLE="font-style: normal">,
+and Mode set to <I>NFM</I>. </SPAN>
+</P>
+<P STYLE="font-style: normal">	I am not going to go into a whole
+scanning lesson, but two way communications in the VHF/UHF/SHF band
+are mainly 15kHz, NFM. While broadcast channels are set to 230 kHz,
+WFM.  Let's start by quickly tuning in a broadcast band frequency.</P>
+<OL>
+	<LI><P STYLE="font-style: normal">Set the filter to 230
+	kilohertz.<BR>Click on the filter drop down list box, and select 230
+	from the list of available filters.</P>
+	<LI><P STYLE="font-style: normal">Set the mode to wide FM.<BR>Click
+	on the mode drop down list box, and select WFM from the list of
+	available modes.</P>
+	<LI><P STYLE="font-style: normal">Enter the frequency of 100.3
+	MHz.<BR>Click on the digits [1][0][0][.][3] then click on [ENTER].
+	Alternatively, you can click in the text box underneath the digits
+	in the <I>Direct Key Entry</I> pad. Then type in the frequency 100.3
+	and press enter (or return) on your keyboard. (note: select a
+	different frequency if a) you live in NYC or Philadelphia and have
+	no musical taste or b) you dont have a cool radio station on that
+	frequency and do not live in NYC or Philadelphia)</P>
+	<LI><P STYLE="font-style: normal">Set the volume to a comfortable
+	level.<BR>Click on the volume slider, and while pressing down on the
+	mouse button, move the slider up until you hear audio from the
+	radio.</P>
+</OL>
+<P STYLE="font-style: normal"><FONT SIZE=4>Stepping</FONT></P>
+<P STYLE="font-style: normal">	To step up select a step size and
+press the step up (^) button. This should increment the frequency by
+exactly one step size. Repeat the operatoin with the step down (v)
+button for the identical operation in the opposite direction.</P>
+<P STYLE="font-style: normal"><FONT SIZE=4>Channeling</FONT></P>
+<P STYLE="font-style: normal">	To select the next programmed channel
+press the channel up button (&gt;&gt;). This will go to the next
+stored channel in memory. Repeat the operation with the channel down
+(&lt;&lt;) button for the identical operation in the opposite
+direction.</P>
+<P STYLE="font-style: normal"><FONT SIZE=4 STYLE="font-size: 16pt">Advanced
+Functions</FONT></P>
+<P STYLE="font-style: normal">Ok, so you want to do more with your
+radio? Let's go over some more cool stuff. 
+</P>
+<P STYLE="font-style: normal"><FONT SIZE=4>Scanning</FONT></P>
+<P STYLE="font-style: normal"><FONT SIZE=4>	<FONT SIZE=3>To scan
+select a frequency and press the scan button. It will flicker with
+your available options. It will also dim the unavailable buttons
+during scan mode.  Your four available options are step up scanning
+(^), step down scanning (v), channel up scanning (&gt;&gt;) and
+channel down scanning (&lt;&lt;). </FONT></FONT>
+</P>
+<P STYLE="font-style: normal"><FONT SIZE=3>	During scanning, the
+CTCSS squelch is unused. The radio will stop for five seconds at the
+next frequency which opens its squelch <B>regardless of the CTCSS
+setting</B><SPAN STYLE="font-weight: medium">. After the five
+seconds, the radio will continue to scan in the selected scan mode
+until another mode is selected or the scan button is depressed.</SPAN></FONT></P>
+<P STYLE="font-style: normal"><FONT SIZE=4>Memory Channels</FONT></P>
+<P STYLE="font-style: normal"><FONT SIZE=3>	To add a memory channel,
+navigate channel up or down until you get to the VFO (channel 0).
+Select a frequency, ctcss, mode, and filter. Then press the channel
+add (+) button. In the radio display section, you will see that the
+channel will change to the next free channel, and your settings for
+that frequency will be stored in the channel indicated.</FONT></P>
+<P STYLE="font-style: normal"><FONT SIZE=3>	To edit a memory channel,
+navigate to the channel who's information will be altered. Alter the
+ctcss, mode, filter or frequency, then press the channel add button. 
+Your settings are now altered (saved) for that particular channel.</FONT></P>
+<P STYLE="font-style: normal"><FONT SIZE=3>	To remove a channel,
+navigate to the channel which you want to remove. Then press the
+channel remove (-) button. Your channel setting will be downshifted
+by one, and your maximum number of channels will be decremented.</FONT></P>
+<P STYLE="font-style: normal"><FONT SIZE=4>Profile Management</FONT></P>
+<P STYLE="font-style: normal">	Click on the gear icon on the top, or
+select Edit-&gt;Profile from the menu. This should actuate the
+Profile Editor. In the profile editor,  you can edit your personal
+profile for the radio.  Here you can edit channels, baudrate, and
+device name(s). 
+</P>
+<P STYLE="font-style: normal">	To edit any of the above settings,
+double click on the child item of the tree for which you are editing.
+For example, if you are editing channel 1 information double click on
+channel 1.  This should actuate an edit channel information dialog
+box. Here you can set a channel description, frequency, filter,
+ctcss, or mode. When complete, press the commit button of this dialog
+box to commit the information in the view. Lastly, when done editing
+items press the commit button of the profile editor to save the
+information globally.</P>
+<P STYLE="font-style: normal">	To export a profile (should you be
+moving your radio to  a new computer). Click on File-&gt;Export
+Profile... Select a file name in the ``Save as'' dialog box and press
+Ok (or enter.)</P>
+<P STYLE="font-style: normal">	To import a profile, select
+Load-&gt;Profile... from the menu, or click on the Load icon in the
+tool bar.  Select a profile to import and press Ok (or enter.)</P>
+<P STYLE="font-style: normal"><FONT SIZE=4 STYLE="font-size: 16pt">That's
+All Folks</FONT></P>
+<P STYLE="font-style: normal">	To close the application (which will
+automagically save the state of your radio between sessions) select
+the Quit button in the toolbar, or close it via your window manager's
+close button.</P>
+<P STYLE="font-style: normal">	We hope you enjoy using this as much
+as we did writing it. Send us any bug reports <A HREF="mailto:polywog@ghetto.org">polywog@ghetto.org</A>
+or <A HREF="mailto:javaman@ghetto.org">javaman@ghetto.org</A>. 
+</P>
+<DIV TYPE=FOOTER>
+	<P ALIGN=CENTER STYLE="margin-top: 0.5cm; margin-bottom: 0cm"><FONT SIZE=2>Page
+	<SDFIELD TYPE=PAGE SUBTYPE=RANDOM FORMAT=PAGE>4</SDFIELD> of <SDFIELD TYPE=DOCSTAT SUBTYPE=PAGE FORMAT=PAGE>4</SDFIELD></FONT></P>
+</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,27 @@
+#############################################################################
+# Makefile for building targets in sub directories.
+#############################################################################
+
+MAKEFILE=	Makefile
+SUBDIRS	=	pcomm \
+		pcp \
+		plog \
+		console \
+		x11
+LIBS	=	-L$(SRCDIR)/lib -lpcomm -lpcp -lplog
+INCPATH	=	-I$(SRCDIR)/include 
+
+install: all
+	@echo "Installing in $(PREFIX)"
+
+all: $(SUBDIRS)
+
+$(SUBDIRS): FORCE
+	cd $@; $(MAKE) SRCDIR="$(SRCDIR)"
+
+clean:
+	for i in $(SUBDIRS); \
+	do ( cd $$i ;\
+		 $(MAKE) clean ) ; done
+
+FORCE: 

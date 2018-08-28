@@ -1,0 +1,56 @@
+This is the documentation directory. The white papers are in four formats
+for full readability across various platforms while maintaining its format.
+The one that should work on ALL platforms is the Postscript file. You can
+send that directly to your printer and have a nice paper *yuck* copy. There
+are also Star Office 5.1, Wordperfect, and MS Word 95 documents.
+
+-PolyWog
+
+Dox.cfg				
+	Doxygen configuration file to regenerate the API documentation.
+
+README
+	This file.
+
+Serial-Programming-HOWTO
+	self explanitory. Read it to get a handle on the White papers.
+
+html
+	API Documentation in HTML format.
+
+man
+	API Documentation in manual page format.
+
+known_19nov98.txt.bz2
+	Known codes as of November 19, 1998.
+
+pcr1000-comm.doc
+	Microsoft Word 95 - Explanation of the Serial Port Communications method.
+
+pcr1000-comm.sdw
+	Star Office 5.1 - Explanation of the Serial Port Communications method.
+
+pcr1000-comm.wpd
+	Wordperfect 8 - Explanation of the Serial Port Communications method.
+
+pcr1000-comm.wpd.ps
+	Postscript File - Explanation of the Serial Port Communications method.
+
+pcr1000-pep.doc
+	Microsoft Word 95 - Explanation of the Serial Protocol.
+
+pcr1000-pep.sdw
+	Star Office 5.1 - Explanation of the Serial Protocol.
+
+pcr1000-pep.wpd
+	WordPerfect 8 - Explanation of the Serial Protocol.
+
+pcr1000-pep.wpd.ps
+	Postscript - Explanation of the Serial Protocol.
+
+pcr1000.txt
+	additional information on the PCR1000.
+
+qpcr1k.*
+	manual for the GUI. Where * = sdw (star office), wpd (word perfect),
+		html (duh), doc (Microsoft Word 95).

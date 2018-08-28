@@ -1,0 +1,610 @@
+.TH PComm 3 "17 Jan 2000" "Icom PCR-1000 Library" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+PComm \- The Primitive Communications Object. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <pcomm.h>\fR
+.PP
+.SS Public Members
+
+.in +1c
+.ti -1c
+.RI "\fBPComm\fR (char *pcrDev, tcflag_t baudRate=B9600, const char *name=0)"
+.br
+.RI "\fIThe PComm Constructor.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fB~PComm\fR ()"
+.br
+.RI "\fIThe PComm Destructor.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBPCOpen\fR (const char *pcrDev=PCRDEV, tcflag_t baudRate=B9600)"
+.br
+.RI "\fIOpens another file descriptor to the serial device.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "void \fBPCClose\fR ()"
+.br
+.RI "\fICloses the currently active file descriptor.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBPCTell\fR (char *)"
+.br
+.RI "\fIIssue a command string to the radio.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBPCAsk\fR (char *)"
+.br
+.RI "\fIIssue a status request from the radio.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBPCHear\fR (char *)"
+.br
+.RI "\fIReceive a repsonse from the radio.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBPCRawWrite\fR (char *)"
+.br
+.RI "\fIwrites directly to the current socket.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBPCRawRead\fR (char *)"
+.br
+.RI "\fIreads directly from the current socket.\fR"
+.PP
+
+.in -1c
+.SS Private Members
+
+.in +1c
+.ti -1c
+.RI "\fBsize_pc\fR \fBWrite\fR (char *)"
+.br
+.RI "\fIInternal function to write to the socket.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBRead\fR (char *)"
+.br
+.RI "\fIInternal function to read from the socket.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "void \fBresetCall\fR ()"
+.br
+.RI "\fIresets the radio and port.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "void \fBcountCall\fR ()"
+.br
+.RI "\fIfunction to keep track on the number of calls.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBcallCount\fR"
+.br
+.RI "\fICounter for number of times the radio has been written to.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBcallBuf\fR [256]"
+.br
+.RI "\fIInternal buffer for radio reset.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "struct timeval* \fBtimeOut\fR"
+.br
+.RI "\fIUsed in the select for timeout(s).\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "fd_set* \fBFDSet\fR"
+.br
+.RI "\fISocket set used in the select.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBretVal\fR"
+.br
+.RI "\fISelect()'s return value.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "struct termios* \fBoldtio\fR"
+.br
+.RI "\fIStores the port's original settings.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "struct termios* \fBnewtio\fR"
+.br
+.RI "\fIPort settings to be applied for current session.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "int \fBfd\fR"
+.br
+.RI "\fISocket descriptor used for current session.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBpcrDevice\fR [256]"
+.br
+.RI "\fICurrent serial/comm device.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "tcflag_t \fBpcrSpeed\fR"
+.br
+.RI "\fICurrent baud rate.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBerrRead\fR"
+.br
+.RI "\fIWas there an error reading?\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "bool \fBerrWrite\fR"
+.br
+.RI "\fIWas there an error writing?\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBaskBuf\fR [256]"
+.br
+.RI "\fIBuffer for sending data in PCAsk.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBhearBuf\fR [256]"
+.br
+.RI "\fIBuffer for receiving data in PCHear.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBwriteBuf\fR [256]"
+.br
+.RI "\fIBuffer for writing data used in wrapper \fBWrite\fR().\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBreadBuf\fR [256]"
+.br
+.RI "\fIBuffer for reading data used in wrapper \fBRead\fR().\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "char \fBint_name\fR [256]"
+.br
+.RI "\fIInternal object name. \fBWarning:\fR not necessarily populated.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBwriteCtr\fR"
+.br
+.RI "\fISend bytecount used in wrapper function \fBWrite\fR().\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBreadCtr\fR"
+.br
+.RI "\fIReceive bytecount used in wrapper function \fBRead\fR().\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBaskCtr\fR"
+.br
+.RI "\fIReceive bytecount used in PCAsk.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBtellCtr\fR"
+.br
+.RI "\fISend bytecount used in PCTell.\fR"
+.PP
+.in +1c
+
+.ti -1c
+.RI "\fBsize_pc\fR \fBhearCtr\fR"
+.br
+.RI "\fIReceive bytecount used in PCHear.\fR"
+.PP
+
+.in -1c
+.SH DETAILED DESCRIPTION
+.PP 
+The Primitive Communications Object.
+.PP
+PComm object is the serial i/o object. It facilitates the low level grunt work for reading and writing to the serial device(s). It handles the string manipulation necessary for communication with the radio. 
+.PP
+Definition at line 47 of file pcomm.h.
+.SH MEMBER FUNCTION DOCUMENTATION
+.PP 
+.SS PComm::PComm (char * pcrDev, tcflag_t baudRate = B9600, const char * name = 0)
+.PP
+The PComm Constructor.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIpcrDev\fR\fR name of device to be opened (char string) 
+.TP
+\fB\fIbaudRate\fR\fR speed of device to be opened 
+.TP
+\fB\fIname\fR\fR internal object name (for your use)
+.PP
+This is the easiest way to open the serial device for communications with the radio. If the serial device cannot be opened for processing the object will abort with a -1 status code to the operating system.
+.PP
+You must send it at least the device name which is to be opened as the first argument. Optionally, you can send it an initial \fIbaudrate\fR and an internal object \fIname.\fR 
+.SS PComm::~PComm ()
+.PP
+The PComm Destructor.
+.PP
+Destroys the object, and closes any open file descriptors to the serial device. It also restores any old (initial) settings to the serial device. 
+.PP
+Definition at line 62 of file pcomm.cpp.
+.SS PComm::PCOpen (const char * pcrDev = PCRDEV, tcflag_t baudRate = B9600)
+.PP
+Opens another file descriptor to the serial device.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIpcrDev\fR\fR Serial port device to be opened. 
+.TP
+\fB\fIbaudRate\fR\fR Initial serial speed.
+.PP
+Opens a file descriptor to the device \fIpcrDev\fR (which is by default your system's PCRDEV define) at the speed \fIbaudRate\fR (which is by default as delinated in your termios.h set to 9600 baud).
+.PP
+\fBWarning:\fR You can only call this as long as the object is alive. If you do destry the object remember to call this function only after setting up the port configuration correctly.
+.PP
+\fBReturns: \fR
+.in +1c
+true or false based on success value. 
+.PP
+Definition at line 79 of file pcomm.cpp.
+.SS PComm::PCClose ()
+.PP
+Closes the currently active file descriptor.
+.PP
+Used in conjunction with PCOpen(...) so that you can release and regain the socket after an initialization procedure. 
+.PP
+Definition at line 173 of file pcomm.cpp.
+.SS PComm::PCTell (char * mesg)
+.PP
+Issue a command string to the radio.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fImesg\fR\fR command string from \fBpcrdef.h\fR.
+.PP
+Sends a command to the radio via the custom made wrapper function \fBWrite\fR() . This doesnt really alter the message at all for reading and writing to the radio.
+.PP
+\fBReturns: \fR
+.in +1c
+number of bytes actually written gets returned, or (-1) on error.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR 
+.PP
+Definition at line 194 of file pcomm.cpp.
+.SS PComm::PCAsk (char * mesg)
+.PP
+Issue a status request from the radio.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fImesg\fR\fR a query command string
+.PP
+This function makes sure that mesg isnt empty, as well as making sure that mesg is two bytes long. Any queries sent to the radio should be the header of the information requested to be returned.
+.PP
+It then zero's out the ask buffer, and copies the message into the ask buffer. Then it concatenates the PCRQST command terminator, and calls \fBWrite\fR() sending it the ask buffer.
+.PP
+\fBReturns: \fR
+.in +1c
+the number of bytes asked minus the PCRQST command terminator.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBPCRQST\fR() \fBpcrdef.h\fR 
+.PP
+Definition at line 217 of file pcomm.cpp.
+.SS PComm::PCHear (char * mesg)
+.PP
+Receive a repsonse from the radio.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fImesg\fR\fR a character string long enough to hold a reply
+.PP
+This function makes sure that mesg is pointing to a valid address (ie: is malloc'd) then it zero's out the message string and hearBuffer. It then calls \fBRead\fR()... remembering the number of bytes read, it cuts out the end-of-command marker read in (CR-LF) and copies what it heard into the message string.
+.PP
+If the radio kept spitting out LF chars, it checks for the err bool.
+.PP
+\fBReturns: \fR
+.in +1c
+the number of bytes read, or -1 on err.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR 
+.PP
+Definition at line 251 of file pcomm.cpp.
+.SS PComm::PCRawWrite (char * mesg)
+.PP
+writes directly to the current socket.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fImesg\fR\fR the character string which it will write
+.PP
+Sends a command directly to the socket without any preprocessing
+.PP
+\fBReturns: \fR
+.in +1c
+number of bytes actually written
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBPCRawRead\fR(char *mesg) 
+.PP
+Definition at line 304 of file pcomm.cpp.
+.SS PComm::PCRawRead (char * mesg)
+.PP
+reads directly from the current socket.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fImesg\fR\fR malloc'd char string big enough to hold a reply
+.PP
+Reads directly from the socket without any preprocessing
+.PP
+\fBReturns: \fR
+.in +1c
+number of bytes read. 
+.PP
+\fBSee also: \fR
+.in +1c
+\fBpcrdef.h\fR \fBPCRawWrite\fR(char *mesg) 
+.PP
+Definition at line 337 of file pcomm.cpp.
+.SS PComm::Write (char * submesg)\fC [private]\fR
+.PP
+Internal function to write to the socket.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIsubmesg\fR\fR character string to write out to
+.PP
+sends a command to the radio/socket.
+.PP
+It zero's out the internal class's write buffer, and copies the message passed in called submesg into the write buffer. It appends the special end-of-command marker to the write buffer, and exec's write(). Select() is used to see if we are ready to write to the socket in the FDSet.
+.PP
+\fBReturns: \fR
+.in +1c
+what was actually written minus two. Since the minus two is to account for the end-of-command marker. On error we return -2
+.PP
+\fBSee also: \fR
+.in +1c
+\fBRead\fR() 
+.PP
+Definition at line 370 of file pcomm.cpp.
+.SS PComm::Read (char * submesg)\fC [private]\fR
+.PP
+Internal function to read from the socket.
+.PP
+\fBParameters: \fR
+.in +1c
+.TP
+\fB\fIsubmesg\fR\fR a character string long enough to hold data
+.PP
+It reset's the read counter, and loopbreaker. The read counter keeps track of the number of bytes read in. The loop breaker makes sure that read doesnt get stuck reading New Lines from the radio for ever and ever. Since we are ignoring newlines when we read. The radio has a tendency of sending newlines even when it has nothing to say.
+.PP
+it executes read() into the internal variable read buffer, and increments the loop breaker. If the number of bytes read is greater than 1, then some useful data was read in... no need to re-loop. When good data is read, it is copied into the submesg string from the read buffer. Select() will determine if the socket in FDSet is ready to read data.
+.PP
+\fBReturns: \fR
+.in +1c
+If after five times, the read() read in anything less than 1, then break, and set errRead to true, while returning the number of bytes read. If after five seconds fd says that it's still not ready, then it will return, setting the read counter to a negative value.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBWrite\fR() 
+.PP
+Definition at line 416 of file pcomm.cpp.
+.SS PComm::resetCall ()\fC [private]\fR
+.PP
+resets the radio and port.
+.PP
+This function reset's the radio and the port when called. It is necessary to reset the radio after a certain number of read() and write()'s. In this case we have made it after 200 write() calls.
+.PP
+It closes the port, and reopens the port. Zero's out the call buffer, and copy's the poweron/ecmd command strings into the call buffer. It then select()'s to see if we are ready to write to the buffer. After which it writes to the radio to tell it, that we are back online and want it to come up. Then it bzero's the call buffer and reads what the radio has to say. It loops in that mode if it received only one character of data (the radio likes to send nothing but newlines sometimes) AND the number of loops is less than 10. We dont want to get stuck there.
+.PP
+\fBWarning:\fR this function is necessary for the radio to operate properly under the manual update mode. If you override this function make sure to run the radio in auto-update mode.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBcountCall\fR() 
+.PP
+Definition at line 496 of file pcomm.cpp.
+.SS PComm::countCall ()\fC [private]\fR
+.PP
+function to keep track on the number of calls.
+.PP
+this function keeps track of the number of calls that were sent to the radio before the last reset. it calls \fBresetCall\fR() every 200 calls, otherwise it increments the call count.
+.PP
+\fBSee also: \fR
+.in +1c
+\fBresetCall\fR() 
+.PP
+Definition at line 564 of file pcomm.cpp.
+.SH MEMBER DATA DOCUMENTATION
+.PP 
+.SS int PComm::callCount\fC [private]\fR
+.PP
+Counter for number of times the radio has been written to.
+.PP
+Definition at line 68 of file pcomm.h.
+.SS char PComm::callBuf[256]\fC [private]\fR
+.PP
+Internal buffer for radio reset.
+.PP
+Definition at line 70 of file pcomm.h.
+.SS struct timeval* PComm::timeOut\fC [private]\fR
+.PP
+Used in the select for timeout(s).
+.PP
+Definition at line 73 of file pcomm.h.
+.SS fd_set* PComm::FDSet\fC [private]\fR
+.PP
+Socket set used in the select.
+.PP
+Definition at line 75 of file pcomm.h.
+.SS int PComm::retVal\fC [private]\fR
+.PP
+Select()'s return value.
+.PP
+Definition at line 77 of file pcomm.h.
+.SS struct termios* PComm::oldtio\fC [private]\fR
+.PP
+Stores the port's original settings.
+.PP
+Definition at line 79 of file pcomm.h.
+.SS struct termios* PComm::newtio\fC [private]\fR
+.PP
+Port settings to be applied for current session.
+.PP
+Definition at line 81 of file pcomm.h.
+.SS int PComm::fd\fC [private]\fR
+.PP
+Socket descriptor used for current session.
+.PP
+Definition at line 83 of file pcomm.h.
+.SS char PComm::pcrDevice[256]\fC [private]\fR
+.PP
+Current serial/comm device.
+.PP
+Definition at line 85 of file pcomm.h.
+.SS tcflag_t PComm::pcrSpeed\fC [private]\fR
+.PP
+Current baud rate.
+.PP
+Definition at line 87 of file pcomm.h.
+.SS bool PComm::errRead\fC [private]\fR
+.PP
+Was there an error reading?
+.PP
+Definition at line 90 of file pcomm.h.
+.SS bool PComm::errWrite\fC [private]\fR
+.PP
+Was there an error writing?
+.PP
+Definition at line 92 of file pcomm.h.
+.SS char PComm::askBuf[256]\fC [private]\fR
+.PP
+Buffer for sending data in PCAsk.
+.PP
+Definition at line 94 of file pcomm.h.
+.SS char PComm::hearBuf[256]\fC [private]\fR
+.PP
+Buffer for receiving data in PCHear.
+.PP
+Definition at line 96 of file pcomm.h.
+.SS char PComm::writeBuf[256]\fC [private]\fR
+.PP
+Buffer for writing data used in wrapper \fBWrite\fR().
+.PP
+Definition at line 98 of file pcomm.h.
+.SS char PComm::readBuf[256]\fC [private]\fR
+.PP
+Buffer for reading data used in wrapper \fBRead\fR().
+.PP
+Definition at line 100 of file pcomm.h.
+.SS char PComm::int_name[256]\fC [private]\fR
+.PP
+Internal object name. \fBWarning:\fR not necessarily populated.
+.PP
+Definition at line 102 of file pcomm.h.
+.SS \fBsize_pc\fR PComm::writeCtr\fC [private]\fR
+.PP
+Send bytecount used in wrapper function \fBWrite\fR().
+.PP
+Definition at line 104 of file pcomm.h.
+.SS \fBsize_pc\fR PComm::readCtr\fC [private]\fR
+.PP
+Receive bytecount used in wrapper function \fBRead\fR().
+.PP
+Definition at line 106 of file pcomm.h.
+.SS \fBsize_pc\fR PComm::askCtr\fC [private]\fR
+.PP
+Receive bytecount used in PCAsk.
+.PP
+Definition at line 108 of file pcomm.h.
+.SS \fBsize_pc\fR PComm::tellCtr\fC [private]\fR
+.PP
+Send bytecount used in PCTell.
+.PP
+Definition at line 110 of file pcomm.h.
+.SS \fBsize_pc\fR PComm::hearCtr\fC [private]\fR
+.PP
+Receive bytecount used in PCHear.
+.PP
+Definition at line 112 of file pcomm.h.
+
+.SH AUTHOR
+.PP 
+Generated automatically by Doxygen for Icom PCR-1000 Library from the source code.

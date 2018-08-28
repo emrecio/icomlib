@@ -1,0 +1,33 @@
+################################################################
+# console apps makefile
+#
+
+DESTDIR		= $(SRCDIR)/bin
+TARGETS		= $(DESTDIR)/pcr \
+		  $(DESTDIR)/pcroff
+INCPATH		= $(SRCDIR)/include
+LIBS		= $(SRCDIR)/lib -lpcomm -lpcp -lplog
+CC		= $(P_CC)
+CXX		= $(P_CXX)
+LINKER		= $(P_LINKER)
+
+all: $(TARGETS)
+	@echo "-----------------------------------------------------------"
+	@echo "*  Console apps done ..."
+	@echo "-----------------------------------------------------------"
+
+$(DESTDIR)/pcr: pcr.cpp
+	$(CXX) $(P_DEBUG) $(P_SYS) -o $(DESTDIR)/pcr -L$(LIBS) -I$(INCPATH) pcr.cpp
+
+$(DESTDIR)/pcroff: pcroff.cpp
+	$(CXX) $(P_DEBUG) $(P_SYS) -o $(DESTDIR)/pcroff -L$(LIBS) -I$(INCPATH) pcroff.cpp
+
+pcr.cpp: $(INCPATH)/pcp.h \
+	    $(INCPATH)/pcrdef.h
+
+pcroff.cpp: $(INCPATH)/pcp.h \
+	    $(INCPATH)/pcrdef.h
+
+clean:
+	rm -f $(TARGETS)
+	rm -f core *~
